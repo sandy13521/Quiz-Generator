@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">QuizGenerator</string>
+    <string name="step1">1. Click the Generate Button
+    below to get started !! </string>
+    <string name="step2">2. Then you will be asked to
+    click the photo of the
+    questions with its options.</string>
+    <string name="step3">3. Crop the image.</string>
+    <string name="step4">4. Adjust the error and options
+    to your match.</string>
+    <string name="step5">5. Select the add button to add
+    it to the list of questions in your
+    quiz.</string>
+    <string name="step6">6. Screen displaying the list of
+    questions will appear. If you
+    wish to add a question click add
+    else exit.</string>
+    <string name="step7">7. After exiting, If you wish to add
+   a timer set the timer.</string>
+    <string name="step8">8. Click Generate.</string>
+
+
+</resources>
