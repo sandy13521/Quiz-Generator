@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Name_Quiz">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#5608DF"
+        android:fontFamily="sans-serif-condensed-light"
+        android:padding="10dp"
+        android:text="Name Your Quiz"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:padding="16dp"
+        android:text="Enter Quiz Name"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/quiz_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="#F8C427"
+        android:fontFamily="sans-serif"
+        android:onClick="getGoing"
+        android:text="Next" />
+
+</LinearLayout>
