@@ -19,6 +19,7 @@
    a timer set the timer.</string>
     <string name="step8">8. Click Generate.</string>
     <string name="name">Name Your Quiz</string>
+    <string name="enter_name">Enter Quiz Name</string>
     <string name="next">NEXT</string>
 
 </resources>

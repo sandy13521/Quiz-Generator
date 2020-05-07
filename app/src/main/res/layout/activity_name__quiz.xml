@@ -20,36 +20,31 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginLeft="20dp"
-        android:text="Enter Quiz Name"
+        android:layout_marginTop="30dp"
+        android:text="@string/enter_name"
         android:textSize="20sp" />
 
     <EditText
+
         android:id="@+id/quiz_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="15dp"
+        android:autofillHints="Name"
         android:inputType="text" />
 
     <Button
         android:id="@+id/next"
         android:layout_width="match_parent"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="100dp"
         android:layout_marginTop="50dp"
+        android:layout_marginRight="100dp"
         android:background="#F8C427"
         android:fontFamily="sans-serif"
         android:onClick="openCamera"
         android:text="@string/next" />
-
-    <ImageView
-        android:id="@+id/picture"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:padding="16dp" />
 
 </LinearLayout>
