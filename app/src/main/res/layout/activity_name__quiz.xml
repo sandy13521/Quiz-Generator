@@ -12,7 +12,7 @@
         android:background="#5608DF"
         android:fontFamily="sans-serif-condensed-light"
         android:padding="10dp"
-        android:text="Name Your Quiz"
+        android:text="@string/name"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
@@ -21,24 +21,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:padding="16dp"
+        android:layout_marginLeft="20dp"
         android:text="Enter Quiz Name"
-        android:textSize="30sp" />
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/quiz_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="20dp"
         android:inputType="text" />
 
     <Button
         android:id="@+id/next"
         android:layout_width="match_parent"
+        android:layout_marginLeft="100dp"
+        android:layout_marginRight="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:background="#F8C427"
         android:fontFamily="sans-serif"
-        android:onClick="getGoing"
-        android:text="Next" />
+        android:onClick="openCamera"
+        android:text="@string/next" />
+
+    <ImageView
+        android:id="@+id/picture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:padding="16dp" />
 
 </LinearLayout>
