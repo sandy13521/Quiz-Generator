@@ -1,11 +1,8 @@
 package com.example.quizgenerator;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,28 +29,27 @@ public class Name_Quiz extends AppCompatActivity {
 
     public void openCamera(View v) {
         if (quizName.length() != 0) {
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent, CAMERA_REQUEST);
+            Intent intent = new Intent(this, Crop.class);
+            startActivity(intent);
         } else {
             Toast toast = Toast.makeText(this, "Enter the quiz Name", Toast.LENGTH_SHORT);
             toast.show();
         }
     }
 
-    //TODO: quality of image. (look up).
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CAMERA_REQUEST) {
-            if (resultCode == Activity.RESULT_OK) {
-                Bundle b = data.getExtras();
-                Bitmap photo = (Bitmap) data.getExtras().get("data");
-                picUri = data.getData();
-                Intent intent = new Intent(this, question_captured.class);
-                intent.putExtra("data", b);
-                startActivity(intent);
-            }
-        }
-    }
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == CAMERA_REQUEST) {
+//            if (resultCode == Activity.RESULT_OK) {
+////                Bundle b = data.getExtras();
+////                Bitmap photo = (Bitmap) data.getExtras().get("data");
+//                picUri = data.getData();
+//                Intent intent = new Intent(this, Crop.class);
+//                intent.putExtra("data", picUri);
+//                startActivity(intent);
+//            }
+//        }
+//    }
 
 
 }
