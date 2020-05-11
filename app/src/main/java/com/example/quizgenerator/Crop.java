@@ -40,13 +40,6 @@ public class Crop extends AppCompatActivity {
         img = findViewById(R.id.img);
         Uri imageUri = getIntent().getData();
         startCropImageActivity(imageUri);
-        try {
-            Bitmap bitmap = ((BitmapDrawable) img.getDrawable()).getBitmap();
-            fimage = FirebaseVisionImage.fromBitmap(bitmap);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 
     private void startCropImageActivity(Uri imageUri) {
@@ -83,6 +76,8 @@ public class Crop extends AppCompatActivity {
                 try {
                     if (x != null) {
                         img.setImageURI(x);
+                        Bitmap bitmap = ((BitmapDrawable) img.getDrawable()).getBitmap();
+                        fimage = FirebaseVisionImage.fromBitmap(bitmap);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -95,7 +90,6 @@ public class Crop extends AppCompatActivity {
     }
 
     public void generateQuiz(final View v) {
-
         final Intent intent = new Intent(this, Question.class);
         try {
             FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance()
@@ -109,13 +103,44 @@ public class Crop extends AppCompatActivity {
                                     // ...
                                     int count = 0;
                                     ArrayList<String> options = new ArrayList<>();
-                                    for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
-                                        String text = block.getText();
-                                        if (count == 0) {
-                                            intent.putExtra("question", text);
-                                            count++;
-                                        } else {
-                                            options.add(text);
+                                    // for multiple line options.
+                                    if (firebaseVisionText.getTextBlocks().size() <= 2) {
+                                        for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
+                                            String text = block.getText();
+                                            if (count == 0) {
+                                                intent.putExtra("question", text);
+                                                count++;
+                                            } else {
+                                                for (FirebaseVisionText.Line line : block.getLines())
+                                                    options.add(line.getText());
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    // for single line options.
+                                    else if (firebaseVisionText.getTextBlocks().size() >= 4) {
+                                        for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
+                                            String text = block.getText();
+                                            if (count == 0) {
+                                                intent.putExtra("question", text);
+                                                count++;
+                                            } else {
+                                                options.add(block.getText());
+                                            }
+                                        }
+                                    } else {
+                                        for (FirebaseVisionText.TextBlock block : firebaseVisionText.getTextBlocks()) {
+                                            String text = block.getText();
+                                            if (count == 0) {
+                                                intent.putExtra("question", text);
+                                                count++;
+                                            } else {
+                                                for (FirebaseVisionText.Line line : block.getLines()) {
+                                                    for (FirebaseVisionText.Element elem : line.getElements()) {
+                                                        options.add(elem.getText());
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                     intent.putExtra("options", options);
@@ -128,7 +153,6 @@ public class Crop extends AppCompatActivity {
                                         public void onFailure(@NonNull Exception e) {
                                             // Task failed with an exception
                                             // ...
-
                                             e.printStackTrace();
 
                                         }
@@ -137,7 +161,5 @@ public class Crop extends AppCompatActivity {
             Toast toast = Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT);
             toast.show();
         }
-
-
     }
 }

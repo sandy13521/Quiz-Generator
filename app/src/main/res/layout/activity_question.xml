@@ -29,7 +29,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:id="@+id/question_edit"
@@ -39,12 +40,14 @@
             android:orientation="vertical">
 
             <EditText
+                android:inputType="text"
                 android:id="@+id/question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
                 android:layout_margin="8dp"
                 android:layout_marginTop="20dp"
+                android:autofillHints=""
                 android:textSize="25sp" />
 
         </LinearLayout>
@@ -54,7 +57,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+
         android:background="#F8C427"
         android:fontFamily="sans-serif"
+        android:onClick="previewQuestion"
         android:text="@string/add_question" />
 </LinearLayout>
