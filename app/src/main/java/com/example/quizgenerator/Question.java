@@ -2,7 +2,6 @@ package com.example.quizgenerator;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -17,6 +16,7 @@ public class Question extends AppCompatActivity {
 
     public EditText question;
     public LinearLayout edit;
+    public int id = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +28,16 @@ public class Question extends AppCompatActivity {
         actionbar.hide();
 
         question = findViewById(R.id.question);
+
         String valQuestion = getIntent().getExtras().getString("question");
         question.setText(valQuestion);
+
+        int question_id = 0;
+
+        question.setId(question_id);
         edit = findViewById(R.id.question_edit);
+
         ArrayList<String> options = getIntent().getExtras().getStringArrayList("options");
-        int id = 1;
         for (String op : options) {
             EditText option = new EditText(this);
             option.setGravity(1);
@@ -41,19 +46,26 @@ public class Question extends AppCompatActivity {
             option.setPadding(0, 8, 0, 8);
             option.isInEditMode();
             edit.addView(option);
-
+            id += 1;
         }
     }
 
     public void previewQuestion(View v) {
-        ArrayList<Editable> edited = new ArrayList<>();
+        ArrayList<String> edited = new ArrayList<>();
         int question_options_count = edit.getChildCount();
+        EditText q = findViewById(0);
+        edited.add(q.getText().toString());
         for (int i = 1; i <= question_options_count; i++) {
-            EditText child = (EditText) edit.getChildAt(i);
-            edited.add(child.getText());
+            EditText op = findViewById(i);
+            if (op != null) {
+                String o = "" + op.getText();
+                if (o != "") {
+                    edited.add(o);
+                }
+            }
         }
         Intent intent = new Intent(this, previewOfQuestion.class);
-        intent.putExtra("data", edited);
+        intent.putExtra("optionsAndQuestion", edited);
         startActivity(intent);
     }
 }

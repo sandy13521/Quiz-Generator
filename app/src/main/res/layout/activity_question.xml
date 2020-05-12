@@ -40,7 +40,6 @@
             android:orientation="vertical">
 
             <EditText
-                android:inputType="text"
                 android:id="@+id/question"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -48,6 +47,7 @@
                 android:layout_margin="8dp"
                 android:layout_marginTop="20dp"
                 android:autofillHints=""
+                android:inputType="text"
                 android:textSize="25sp" />
 
         </LinearLayout>
@@ -57,9 +57,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-
         android:background="#F8C427"
         android:fontFamily="sans-serif"
         android:onClick="previewQuestion"
-        android:text="@string/add_question" />
+        android:text="@string/pre_question" />
 </LinearLayout>
