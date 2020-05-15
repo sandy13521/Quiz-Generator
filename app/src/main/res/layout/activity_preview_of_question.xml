@@ -18,30 +18,32 @@
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#F4FBFC"
+            android:padding="8dp"
+            android:text="Q. "
+            android:textSize="25sp" />
 
         <LinearLayout
             android:id="@+id/previewLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/question"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:background="#F4FBFC"
-                android:padding="8dp"
-                android:text="Q. "
-                android:textSize="25sp" />
 
         </LinearLayout>
-    </ScrollView>
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,9 +67,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#9AD9DF"
-            android:paddingLeft="8dp"
-            android:text="Add"
             android:onClick="selectOption"
+            android:paddingLeft="8dp"
+            android:text="OK"
             android:textStyle="bold" />
     </LinearLayout>
 </LinearLayout>
