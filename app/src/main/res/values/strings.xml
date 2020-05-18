@@ -21,5 +21,7 @@
     <string name="name">Name Your Quiz</string>
     <string name="enter_name">Enter Quiz Name</string>
     <string name="next">NEXT</string>
+    <string name="pre_question">Preview Question</string>
+    <string name="list">List Of Question</string>
 
 </resources>

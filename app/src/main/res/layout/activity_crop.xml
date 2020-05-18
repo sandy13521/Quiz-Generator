@@ -4,20 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".question_captured">
+    tools:context=".Crop">
+
 
     <ImageView
-        android:id="@+id/captured_question"
+        android:id="@+id/img"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="11"
         android:contentDescription="Captured Image" />
 
     <Button
+        android:id="@+id/getgoing"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:background="#F8C427"
         android:fontFamily="sans-serif"
-        android:text="Next" />
+        android:onClick="generateQuiz"
+        android:text="Generate" />
 </LinearLayout>
