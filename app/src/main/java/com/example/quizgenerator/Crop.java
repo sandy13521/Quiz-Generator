@@ -28,9 +28,11 @@ import java.util.ArrayList;
 
 public class Crop extends AppCompatActivity {
 
-    public Uri mCropImageUri;
+    //Declaring UI Elements
     public ImageView img;
 
+    //Declaring variables
+    public Uri mCropImageUri;
     public FirebaseVisionImage fimage;
 
     @Override
@@ -42,6 +44,7 @@ public class Crop extends AppCompatActivity {
         startCropImageActivity(imageUri);
     }
 
+    //Cropping API call
     private void startCropImageActivity(Uri imageUri) {
         CropImage.activity(imageUri)
                 .setGuidelines(CropImageView.Guidelines.ON)
@@ -89,6 +92,7 @@ public class Crop extends AppCompatActivity {
         }
     }
 
+    //Passing the captured image to Firebase ML kit API to recognize the text in the image.
     public void generateQuiz(final View v) {
         final Intent intent = new Intent(this, Question.class);
         try {
@@ -99,8 +103,6 @@ public class Crop extends AppCompatActivity {
                             .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
                                 @Override
                                 public void onSuccess(FirebaseVisionText firebaseVisionText) {
-                                    // Task completed successfully
-                                    // ...
                                     int count = 0;
                                     ArrayList<String> options = new ArrayList<>();
                                     // for multiple line options.
@@ -151,8 +153,6 @@ public class Crop extends AppCompatActivity {
                                     new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            // Task failed with an exception
-                                            // ...
                                             e.printStackTrace();
 
                                         }

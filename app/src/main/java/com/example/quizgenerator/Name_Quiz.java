@@ -20,13 +20,14 @@ public class Name_Quiz extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_name__quiz);
+        setContentView(R.layout.activity_name_quiz);
         ActionBar actionbar = getSupportActionBar();
         actionbar.hide();
         TextView name = findViewById(R.id.quiz_name);
         quizName = name.getText();
     }
 
+    //Going to next page to capture the image.
     public void openCamera(View v) {
         if (quizName.length() != 0) {
             Intent intent = new Intent(this, Crop.class);
@@ -36,20 +37,4 @@ public class Name_Quiz extends AppCompatActivity {
             toast.show();
         }
     }
-
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == CAMERA_REQUEST) {
-//            if (resultCode == Activity.RESULT_OK) {
-////                Bundle b = data.getExtras();
-////                Bitmap photo = (Bitmap) data.getExtras().get("data");
-//                picUri = data.getData();
-//                Intent intent = new Intent(this, Crop.class);
-//                intent.putExtra("data", picUri);
-//                startActivity(intent);
-//            }
-//        }
-//    }
-
-
 }

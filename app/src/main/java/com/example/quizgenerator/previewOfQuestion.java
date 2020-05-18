@@ -32,8 +32,6 @@ public class previewOfQuestion extends AppCompatActivity {
         String question = options.get(0);
         questionTextView.append(question);
         questionTextView.setTextSize(20);
-        System.out.println(options.size());
-        // TODO : Put options to the bottom of the page
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         params.setMargins(10, 10, 10, 10);
@@ -58,6 +56,7 @@ public class previewOfQuestion extends AppCompatActivity {
         }
     }
 
+    //Directing to next page to select the correct option for the question.
     public void selectOption(View v) {
         Intent intent = new Intent(this, selectCorrectOption.class);
         intent.putExtra("optionsAndQuestion", options);
