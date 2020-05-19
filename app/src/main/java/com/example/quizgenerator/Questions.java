@@ -18,15 +18,15 @@ public class Questions {
         this.question = question;
     }
 
-    public void setQuestion(String question) {
-        this.question = question;
+    public String getQuestion() {
+        return question;
     }
 
-    public void setOptions(ArrayList<String> options) {
-        this.options = options;
+    public ArrayList<String> getOptions() {
+        return options;
     }
 
-    public void setCorrectOption(String correctOption) {
-        this.correctOption = correctOption;
+    public String getCorrectOption() {
+        return correctOption;
     }
 }

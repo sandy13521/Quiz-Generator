@@ -1,5 +1,6 @@
 package com.example.quizgenerator;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -115,7 +116,8 @@ public class selectCorrectOption extends AppCompatActivity {
             String id = questions.push().getKey();
             Questions questionObject = new Questions(correctOption, question, options);
             questions.child(id).setValue(questionObject);
-            Toast.makeText(this, "Question Added", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, listOfQuestions.class);
+            startActivity(intent);
         } catch (Exception e) {
             e.printStackTrace();
         }
