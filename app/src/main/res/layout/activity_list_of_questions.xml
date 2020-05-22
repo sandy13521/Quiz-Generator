@@ -17,18 +17,11 @@
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
 
-    <!--    <ScrollView-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:layout_weight="1">-->
-
     <ListView
         android:id="@+id/questions"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
-    <!--    </ScrollView>-->
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,7 +35,7 @@
             android:layout_gravity="bottom"
             android:layout_weight="1"
             android:background="#A4FBA6"
-            android:text="Finish Quiz" />
+            android:text="@string/finish" />
 
         <Button
             android:id="@+id/add_question_button"
@@ -51,6 +44,6 @@
             android:layout_gravity="bottom"
             android:layout_weight="1"
             android:background="#13EBA2"
-            android:text="Add Question" />
+            android:text="@string/add_question" />
     </LinearLayout>
 </LinearLayout>

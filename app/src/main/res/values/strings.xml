@@ -23,5 +23,7 @@
     <string name="next">NEXT</string>
     <string name="pre_question">Preview Question</string>
     <string name="list">List Of Question</string>
+    <string name="add_question">Add Question</string>
+    <string name="finish">Finish</string>
 
 </resources>
