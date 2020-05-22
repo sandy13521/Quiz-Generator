@@ -1,6 +1,9 @@
 package com.example.quizgenerator;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,6 +26,8 @@ public class listOfQuestions extends AppCompatActivity {
     public ListView questionsListView;
     private DatabaseReference mDatabase;
     public List<Questions> listOfQuestion;
+    public Button finishButton;
+    public Button addQuestionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +40,13 @@ public class listOfQuestions extends AppCompatActivity {
         //Getting Firebase Instance
         mDatabase = FirebaseDatabase.getInstance().getReference("quiz").child("test").child("questions");
 
+        //Initializing variables.
         listOfQuestion = new ArrayList<>();
         questionsListView = findViewById(R.id.questions);
-    }
+        finishButton = findViewById(R.id.finish_quiz_button);
+        addQuestionButton = findViewById(R.id.add_question_button);
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+        //Retrieving and Directing the data in into ListView.
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -52,12 +57,27 @@ public class listOfQuestions extends AppCompatActivity {
                 }
                 listAdapter adapter = new listAdapter(listOfQuestions.this, listOfQuestion);
                 questionsListView.setAdapter(adapter);
-                Toast.makeText(getApplicationContext(), "Question is added", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "Firebase is Broken", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Firebase is Broken!!! Shit", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(listOfQuestions.this, ListOfQuizs.class);
+                startActivity(intent);
+            }
+        });
+
+        addQuestionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(listOfQuestions.this, Crop.class);
+                startActivity(intent);
             }
         });
     }
