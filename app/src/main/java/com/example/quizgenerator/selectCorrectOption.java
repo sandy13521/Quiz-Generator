@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,6 +28,7 @@ public class selectCorrectOption extends AppCompatActivity {
     public ArrayList<String> options;
     public String correctOption;
     public String question;
+    private FirebaseAuth mAuth;
 
     // Declaring Database Reference
     private DatabaseReference mDatabase;
@@ -39,7 +42,7 @@ public class selectCorrectOption extends AppCompatActivity {
         actionbar.hide();
 
         // Getting DataBase Reference
-        mDatabase = FirebaseDatabase.getInstance().getReference("quiz");
+        mAuth = FirebaseAuth.getInstance();
 
         select = findViewById(R.id.selectLayout);
         questionTextView = findViewById(R.id.question);
@@ -112,10 +115,13 @@ public class selectCorrectOption extends AppCompatActivity {
     //Adding Data to Firebase.
     public void addQuestionToFirebase() {
         try {
-            final DatabaseReference questions = mDatabase.child("test").child("questions");
-            String id = questions.push().getKey();
-            Questions questionObject = new Questions(correctOption, question, options);
-            questions.child(id).setValue(questionObject);
+            FirebaseUser user = mAuth.getCurrentUser();
+            assert user != null;
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
+            final DatabaseReference reference = database.getReference().child("users").child(user.getUid()).child("quiz").child(Name_Quiz.quizName.toString());
+            String id = reference.push().getKey();
+            Questions questionObject = new Questions(id, correctOption, question, options);
+            reference.child(id).setValue(questionObject);
             Intent intent = new Intent(this, listOfQuestions.class);
             startActivity(intent);
         } catch (Exception e) {

@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void generate(View v) {
-        Intent intent = new Intent(this, ListOfQuizs.class);
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 

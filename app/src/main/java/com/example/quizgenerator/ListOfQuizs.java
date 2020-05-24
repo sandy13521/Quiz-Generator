@@ -3,6 +3,7 @@ package com.example.quizgenerator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -11,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +29,7 @@ public class ListOfQuizs extends AppCompatActivity {
     private DatabaseReference mDatabase;
     public List<String> quizNames;
     public Button addButton;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +39,12 @@ public class ListOfQuizs extends AppCompatActivity {
         ActionBar actionbar = getSupportActionBar();
         actionbar.hide();
 
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+
         //Initializing Variables.
         listOfQuiz = findViewById(R.id.listOfquizs);
-        mDatabase = FirebaseDatabase.getInstance().getReference("quiz");
+        mDatabase = FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("quiz");
         quizNames = new ArrayList<>();
         addButton = findViewById(R.id.add);
 
@@ -49,6 +56,18 @@ public class ListOfQuizs extends AppCompatActivity {
             }
         });
 
+        listOfQuiz.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ListOfQuizs.this, listOfQuestions.class);
+                intent.putExtra("QuizName", quizNames.get(position));
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -66,4 +85,5 @@ public class ListOfQuizs extends AppCompatActivity {
             }
         });
     }
+
 }
