@@ -12,7 +12,7 @@
         android:background="#5608DF"
         android:fontFamily="sans-serif-condensed-light"
         android:padding="10dp"
-        android:text="Steps To Generate Quiz"
+        android:text="@string/steps"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
@@ -101,5 +101,5 @@
         android:background="#F8C427"
         android:fontFamily="sans-serif"
         android:onClick="getGoing"
-        android:text="Generate" />
+        android:text="@string/generateQuiz" />
 </LinearLayout>

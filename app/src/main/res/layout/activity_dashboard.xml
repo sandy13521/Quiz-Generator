@@ -12,7 +12,7 @@
         android:background="#5608DF"
         android:fontFamily="sans-serif-condensed-light"
         android:padding="10dp"
-        android:text="Dashboard"
+        android:text="@string/dashboard"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Host Your Quiz"
+        android:text="@string/host"
         android:textAlignment="center"
         android:textSize="20sp" />
 
@@ -31,12 +31,12 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:background="@mipmap/host_quiz_foreground"
-        android:contentDescription="Host Quiz" />
+        android:contentDescription="@string/host" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create Your Quiz"
+        android:text="@string/create"
         android:layout_marginTop="20dp"
         android:textAlignment="center"
         android:textSize="20sp" />
@@ -48,5 +48,5 @@
         android:layout_weight="1"
         android:scaleType="centerCrop"
         android:background="@mipmap/quiz_creator_foreground"
-        android:contentDescription="Quiz Creator" />
+        android:contentDescription="@string/create" />
 </LinearLayout>

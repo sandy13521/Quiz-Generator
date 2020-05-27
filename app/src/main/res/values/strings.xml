@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">QuizGenerator</string>
+    <string name="steps">Steps To Generate Quiz</string>
     <string name="step1">1. Click the Generate Button
     below to get started !! </string>
     <string name="step2">2. Then you will be asked to
@@ -25,5 +26,13 @@
     <string name="list">List Of Question</string>
     <string name="add_question">Add Question</string>
     <string name="finish">Finish</string>
-
+    <string name="host">Host and Modify Your Quizzes</string>
+    <string name="create">Create Your Quizzes</string>
+    <string name="dashboard">DashBoard</string>
+    <string name="generateQues">Generate Question</string>
+    <string name="generateQuiz">Generate Quiz</string>
+    <string name="listofquiz">List Of Quizzes</string>
+    <string name="logout">Logout</string>
+    <string name="noQuizYet">No Quiz Created Yet</string>
+    <string name="newQuiz">Create a New Quiz</string>
 </resources>
