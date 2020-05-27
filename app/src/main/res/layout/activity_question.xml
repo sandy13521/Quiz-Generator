@@ -7,6 +7,7 @@
     tools:context=".Question">
 
     <TextView
+        android:text="Edit Question"
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,16 +18,16 @@
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
 
-
-    <TextView
-        android:id="@+id/heading"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_marginTop="20dp"
-        android:text="Question 1"
-        android:textSize="30sp" />
-
+    <Button
+        android:layout_gravity="end"
+        android:layout_marginEnd="20dp"
+        android:background="#F8C427"
+        android:textSize="12sp"
+        android:layout_marginTop="10dp"
+        android:text="Add Option"
+        android:onClick="addEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -44,9 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top"
-                android:layout_margin="8dp"
                 android:layout_marginTop="20dp"
-                android:autofillHints=""
                 android:inputType="text"
                 android:textSize="25sp" />
 

@@ -1,6 +1,10 @@
 package com.example.quizgenerator;
 
+import com.google.firebase.database.Exclude;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Questions {
 
@@ -34,5 +38,16 @@ public class Questions {
 
     public String getIndex() {
         return index;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("index", index);
+        result.put("question", question);
+        result.put("options", options);
+        result.put("correctOption", correctOption);
+
+        return result;
     }
 }

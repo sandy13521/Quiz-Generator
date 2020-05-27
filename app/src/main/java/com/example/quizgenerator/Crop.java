@@ -95,6 +95,9 @@ public class Crop extends AppCompatActivity {
     //Passing the captured image to Firebase ML kit API to recognize the text in the image.
     public void generateQuiz(final View v) {
         final Intent intent = new Intent(this, Question.class);
+        Bundle bundle = getIntent().getExtras();
+        intent.putExtra("QuizName", getIntent().getExtras().getString("QuizName"));
+
         try {
             FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance()
                     .getOnDeviceTextRecognizer();
@@ -147,6 +150,7 @@ public class Crop extends AppCompatActivity {
                                     }
                                     intent.putExtra("options", options);
                                     startActivity(intent);
+                                    finish();
                                 }
                             })
                             .addOnFailureListener(
@@ -158,8 +162,7 @@ public class Crop extends AppCompatActivity {
                                         }
                                     });
         } catch (Exception e) {
-            Toast toast = Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT);
-            toast.show();
+            Toast.makeText(this, "Firebase ML Kit Fucked Up!!", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -46,6 +46,7 @@ public class Name_Quiz extends AppCompatActivity {
         if (quizName.length() != 0) {
             insertQuiz();
             Intent intent = new Intent(this, Crop.class);
+            intent.putExtra("QuizName", quizName.toString());
             startActivity(intent);
         } else {
             Toast toast = Toast.makeText(this, "Enter the quiz Name", Toast.LENGTH_SHORT);

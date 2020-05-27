@@ -29,9 +29,7 @@ public class selectCorrectOption extends AppCompatActivity {
     public String correctOption;
     public String question;
     private FirebaseAuth mAuth;
-
-    // Declaring Database Reference
-    private DatabaseReference mDatabase;
+    public int id = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +46,9 @@ public class selectCorrectOption extends AppCompatActivity {
         questionTextView = findViewById(R.id.question);
 
         //Getting the list of options for the question from intent
-        options = getIntent().getExtras().getStringArrayList("optionsAndQuestion");
+        options = getIntent().getExtras().getStringArrayList("options");
 
-        question = options.get(0);
+        question = getIntent().getExtras().getString("question");
         questionTextView.append(question);
         questionTextView.setTextSize(20);
 
@@ -59,11 +57,11 @@ public class selectCorrectOption extends AppCompatActivity {
 
         //Adding Options to the Layout and adding onClick Listener for the same.
         try {
-            for (int i = 1; i < options.size(); i++) {
+            for (int i = 0; i < options.size(); i++) {
                 final TextView option = new TextView(getApplicationContext());
                 option.setText(options.get(i));
                 option.setBackgroundColor(Color.RED);
-                option.setId(i);
+                option.setId(id++);
                 option.setLayoutParams(params);
                 option.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
                 option.setTextSize(20);
@@ -95,7 +93,7 @@ public class selectCorrectOption extends AppCompatActivity {
     //Adding Question to the Firebase when Add button is clicked.
     public void addQuestion(View v) {
         correctOption = "None";
-        for (int i = 1; i < options.size(); i++) {
+        for (int i = 1; i < id; i++) {
             TextView op = findViewById(i);
             if (op.isSelected()) {
                 System.out.println(op.getText());
@@ -114,18 +112,40 @@ public class selectCorrectOption extends AppCompatActivity {
 
     //Adding Data to Firebase.
     public void addQuestionToFirebase() {
-        try {
-            FirebaseUser user = mAuth.getCurrentUser();
-            assert user != null;
-            final FirebaseDatabase database = FirebaseDatabase.getInstance();
-            final DatabaseReference reference = database.getReference().child("users").child(user.getUid()).child("quiz").child(Name_Quiz.quizName.toString());
-            String id = reference.push().getKey();
-            Questions questionObject = new Questions(id, correctOption, question, options);
-            reference.child(id).setValue(questionObject);
-            Intent intent = new Intent(this, listOfQuestions.class);
-            startActivity(intent);
-        } catch (Exception e) {
-            e.printStackTrace();
+        Bundle bundle = getIntent().getExtras();
+        if (bundle.containsKey("update") && bundle.getBoolean("update")) {
+            try {
+                FirebaseUser user = mAuth.getCurrentUser();
+                assert user != null;
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final DatabaseReference reference = database.getReference().child("users").child(user.getUid()).child("quiz").child(bundle.getString("QuizName"));
+                Questions questionObject = new Questions(bundle.getString("QuestionIndex"), correctOption, question, options);
+                reference.child(bundle.getString("QuestionIndex")).setValue(questionObject);
+                Intent intent = new Intent(this, listOfQuestions.class);
+                intent.putExtra("QuizName", bundle.getString("QuizName"));
+                startActivity(intent);
+                finish();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                String quizName = bundle.getString("QuizName");
+                FirebaseUser user = mAuth.getCurrentUser();
+                assert user != null;
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final DatabaseReference reference = database.getReference().child("users").child(user.getUid()).child("quiz").child(quizName);
+                String id = reference.push().getKey();
+                Questions questionObject = new Questions(id, correctOption, question, options);
+                reference.child(id).setValue(questionObject);
+                Intent intent = new Intent(this, listOfQuestions.class);
+                intent.putExtra("QuizName", quizName);
+                startActivity(intent);
+                finish();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
+

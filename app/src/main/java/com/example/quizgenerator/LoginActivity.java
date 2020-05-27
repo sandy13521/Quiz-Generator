@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,6 +36,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.hide();
+
         signUpButton = findViewById(R.id.sign_up_button);
         emailEditText = findViewById(R.id.login_email);
         passwordEditText = findViewById(R.id.login_password);
@@ -45,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
             }
         });
 
@@ -72,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         insertDefaultUserProfileDataInFirebaseDatabase();
-                                        Intent intent = new Intent(LoginActivity.this, ListOfQuizs.class);
+                                        Intent intent = new Intent(LoginActivity.this, Dashboard.class);
                                         intent.putExtra("signIn", true);
                                         startActivity(intent);
                                         finish();
@@ -90,7 +94,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if (mAuth.getCurrentUser() != null) {
-            startActivity(new Intent(LoginActivity.this, ListOfQuizs.class));
+            startActivity(new Intent(LoginActivity.this, Dashboard.class));
             System.out.println(mAuth.getCurrentUser().getEmail());
             finish();
         }
@@ -107,8 +111,8 @@ public class LoginActivity extends AppCompatActivity {
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                checkAndAddData(reference, dataSnapshot, "test", 0);
-                checkAndAddData(anotherReference, dataSnapshot, "test", 0);
+//                checkAndAddData(reference, dataSnapshot, "test", 0);
+//                checkAndAddData(anotherReference, dataSnapshot, "test", 0);
             }
 
             @Override
@@ -118,17 +122,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-
-    private <T> void checkAndAddData(DatabaseReference reference, DataSnapshot dataSnapshot, String key, T value) {
-        if (!dataSnapshot.child(key).exists()) {
-            reference.child(key).setValue(value);
-        }
-    }
-
-    public void signup(View v) {
-        Intent intent = new Intent(this, SignUpActivity.class);
-        startActivity(intent);
-    }
-
-
+//
+//    private <T> void checkAndAddData(DatabaseReference reference, DataSnapshot dataSnapshot, String key, T value) {
+//        if (!dataSnapshot.child(key).exists()) {
+//            reference.child(key).setValue(value);
+//        }
+//    }
 }

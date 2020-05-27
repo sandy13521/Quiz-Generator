@@ -6,6 +6,16 @@
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#5608DF"
+        android:fontFamily="sans-serif-condensed-light"
+        android:padding="10dp"
+        android:text="Log In"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp" />
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -13,7 +23,7 @@
         android:scaleType="centerInside"
         android:layout_marginTop="70dp"
         android:layout_marginBottom="50dp"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@mipmap/ic_launcher_round" />
 
     <EditText
         android:id="@+id/login_email"

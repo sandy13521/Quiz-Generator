@@ -6,17 +6,51 @@
     android:orientation="vertical"
     tools:context=".ListOfQuizs">
 
-    <TextView
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#5608DF"
-        android:fontFamily="sans-serif-condensed-light"
-        android:padding="10dp"
-        android:text="List Of Quizes"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp" />
+        android:background="#5608DF">
 
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:background="#5608DF"
+            android:fontFamily="sans-serif-condensed-light"
+            android:paddingLeft="50dp"
+            android:paddingTop="8dp"
+            android:text="List Of Quizzes"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="#F8C427"
+            android:onClick="logout"
+            android:text="Logout"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/noQuiz"
+        android:textSize="25sp"
+        android:textAlignment="center"
+        android:text="No Quiz Created Yet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <ListView
         android:id="@+id/listOfquizs"
         android:layout_width="match_parent"
