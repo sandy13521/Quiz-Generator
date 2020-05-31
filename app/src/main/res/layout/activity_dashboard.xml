@@ -6,17 +6,34 @@
     android:orientation="vertical"
     tools:context=".Dashboard">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#5608DF"
+        android:orientation="horizontal"
+        android:background="#5608DF">
+    <TextView
+        android:layout_width="0dp"
+        android:layout_gravity="start"
+        android:layout_height="wrap_content"
         android:fontFamily="sans-serif-condensed-light"
         android:padding="10dp"
+        android:paddingStart="50dp"
+        android:layout_weight="1"
         android:text="@string/dashboard"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="15dp"
+            android:background="#F8C427"
+            android:onClick="logout"
+            android:text="@string/logout"
+            android:textSize="15sp" />
+    </LinearLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

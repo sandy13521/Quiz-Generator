@@ -1,10 +1,10 @@
 package com.example.quizgenerator;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -12,8 +12,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,7 +32,7 @@ public class ListOfQuizs extends AppCompatActivity {
     public ListView listOfQuiz;
     private DatabaseReference mDatabase;
     public List<String> quizNames;
-    public Button addButton;
+    public FloatingActionButton addButton;
     private FirebaseAuth mAuth;
     public TextView noneCreated;
     public ProgressBar circle;
@@ -59,6 +61,7 @@ public class ListOfQuizs extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ListOfQuizs.this, Guidance.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -68,6 +71,29 @@ public class ListOfQuizs extends AppCompatActivity {
                 Intent intent = new Intent(ListOfQuizs.this, listOfQuestions.class);
                 intent.putExtra("QuizName", quizNames.get(position));
                 startActivity(intent);
+            }
+        });
+
+        listOfQuiz.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder builder
+                        = new AlertDialog
+                        .Builder(ListOfQuizs.this);
+                builder
+                        .setTitle("Host Quiz!")
+                        .setMessage("Shall we continue?")
+                        .setNegativeButton(android.R.string.no, null)
+                        .setCancelable(false)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent intent = new Intent(ListOfQuizs.this, StartActivity.class);
+                                intent.putExtra("QuizName", quizNames.get(position));
+                                startActivity(intent);
+                                finish();
+                            }
+                        }).create().show();
+                return true;
             }
         });
     }
@@ -95,12 +121,5 @@ public class ListOfQuizs extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Firebase is Broken!!! Shit", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
-    public void logout(View v) {
-        mAuth.signOut();
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
     }
 }

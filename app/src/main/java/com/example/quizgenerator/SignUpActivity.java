@@ -76,7 +76,7 @@ public class SignUpActivity extends AppCompatActivity {
                                                             mAuth.signOut();
 
                                                             //Go Back to Login Page.
-                                                            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                                                            Intent intent = new Intent(SignUpActivity.this, Dashboard.class);
                                                             intent.putExtra("registration", true);
                                                             startActivity(intent);
                                                             finish();

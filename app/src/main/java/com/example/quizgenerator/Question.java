@@ -81,6 +81,7 @@ public class Question extends AppCompatActivity {
             intent.putExtra("update", true);
         }
         startActivity(intent);
+        finish();
     }
 
     //Handling Addition of new Edit text for Options in case it is not picked up by Firebas eml.

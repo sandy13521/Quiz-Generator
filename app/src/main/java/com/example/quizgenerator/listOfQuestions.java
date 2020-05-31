@@ -14,6 +14,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -32,7 +33,7 @@ public class listOfQuestions extends AppCompatActivity {
     private DatabaseReference mDatabase;
     public List<Questions> listOfQuestion;
     public Button finishButton;
-    public Button addQuestionButton;
+    public FloatingActionButton addQuestionButton;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     public String quizName;
@@ -137,16 +138,16 @@ public class listOfQuestions extends AppCompatActivity {
             }
         });
     }
-
-    public void onBackPresses() {
-        new AlertDialog.Builder(this)
-                .setTitle("Really Exit?")
-                .setMessage("Are you sure you want to exit?")
-                .setNegativeButton(android.R.string.no, null)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        listOfQuestions.super.onBackPressed();
-                    }
-                }).create().show();
-    }
+//
+//    public void onBackPressed() {
+//        new AlertDialog.Builder(this)
+//                .setTitle("Really Exit?")
+//                .setMessage("Are you sure you want to exit?")
+//                .setNegativeButton(android.R.string.no, null)
+//                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+//                    public void onClick(DialogInterface arg0, int arg1) {
+//                        listOfQuestions.super.onBackPressed();
+//                    }
+//                }).create().show();
+//    }
 }

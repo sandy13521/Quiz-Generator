@@ -78,6 +78,7 @@ public class previewOfQuestion extends AppCompatActivity {
                     intent.putExtra("question", question);
                     intent.putExtra("options", options);
                     startActivity(intent);
+                    finish();
                 }
             });
 
@@ -179,9 +180,18 @@ public class previewOfQuestion extends AppCompatActivity {
                     intent.putExtra("QuizName", getIntent().getExtras().getString("QuizName"));
                     intent.putExtra("question", question);
                     intent.putExtra("options", options);
+                    if (bundle.containsKey("QuestionIndex") && bundle.containsKey("update") && bundle.getBoolean("update")) {
+                        intent.putExtra("update", true);
+                        intent.putExtra("QuestionIndex", bundle.getString("QuestionIndex"));
+                    }
                     startActivity(intent);
+                    finish();
                 }
             });
         }
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

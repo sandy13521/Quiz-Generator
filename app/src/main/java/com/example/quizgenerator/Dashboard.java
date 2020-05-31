@@ -8,10 +8,12 @@ import android.widget.ImageButton;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class Dashboard extends AppCompatActivity {
     public ImageButton hostQuiz;
     public ImageButton createQuiz;
-
+    public FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +22,7 @@ public class Dashboard extends AppCompatActivity {
         ActionBar actionbar = getSupportActionBar();
         actionbar.hide();
 
+        mAuth = FirebaseAuth.getInstance();
         hostQuiz = findViewById(R.id.host_quiz);
         createQuiz = findViewById(R.id.create_quiz);
 
@@ -38,7 +41,12 @@ public class Dashboard extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
-
+    public void logout(View v) {
+        mAuth.signOut();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

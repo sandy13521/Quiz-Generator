@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 29
-    buildToolsVersion"29.0.2"
+    buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.example.quizgenerator"
         minSdkVersion 24
@@ -33,6 +33,7 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
     implementation 'com.google.firebase:firebase-auth:19.3.1'
     implementation 'com.google.android.gms:play-services-auth:18.0.0'
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
 }
 configurations.all {
     resolutionStrategy.eachDependency { DependencyResolveDetails details ->
@@ -42,4 +43,5 @@ configurations.all {
                 details.useVersion "${targetSdk}.+"
             }
         }
-    }}
+    }
+}
