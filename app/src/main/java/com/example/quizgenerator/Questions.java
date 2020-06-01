@@ -14,7 +14,7 @@ public class Questions {
     public String index;
 
     public Questions() {
-
+        //For Firebase
     }
 
     public Questions(String index, String correctOption, String question, ArrayList<String> options) {
