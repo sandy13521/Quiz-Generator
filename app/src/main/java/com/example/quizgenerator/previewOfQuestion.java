@@ -137,7 +137,7 @@ public class previewOfQuestion extends AppCompatActivity {
             questionTextView.setTextSize(20);
 
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-            params.setMargins(10, 10, 10, 10);
+            params.setMargins(8, 8, 8, 8);
 
             try {
                 for (int i = 0; i < options.size(); i++) {
@@ -147,7 +147,7 @@ public class previewOfQuestion extends AppCompatActivity {
                     option.setTextSize(20);
                     option.setId(i);
                     option.setLayoutParams(params);
-                    option.setPadding(8, 8, 8, 8);
+                    option.setPadding(8, 16, 8, 16);
                     option.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
                     option.setTextSize(20);
                     option.setVisibility(View.VISIBLE);

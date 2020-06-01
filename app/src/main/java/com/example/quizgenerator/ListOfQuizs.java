@@ -71,6 +71,7 @@ public class ListOfQuizs extends AppCompatActivity {
                 Intent intent = new Intent(ListOfQuizs.this, listOfQuestions.class);
                 intent.putExtra("QuizName", quizNames.get(position));
                 startActivity(intent);
+                finish();
             }
         });
 
