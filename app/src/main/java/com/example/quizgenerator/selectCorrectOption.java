@@ -1,5 +1,6 @@
 package com.example.quizgenerator;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -25,9 +28,8 @@ public class selectCorrectOption extends AppCompatActivity {
     public ArrayList<String> options;
     public String correctOption;
     public String question;
-
-    // Declaring Database Reference
-    private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
+    public int id = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,15 +40,15 @@ public class selectCorrectOption extends AppCompatActivity {
         actionbar.hide();
 
         // Getting DataBase Reference
-        mDatabase = FirebaseDatabase.getInstance().getReference("quiz");
+        mAuth = FirebaseAuth.getInstance();
 
         select = findViewById(R.id.selectLayout);
         questionTextView = findViewById(R.id.question);
 
         //Getting the list of options for the question from intent
-        options = getIntent().getExtras().getStringArrayList("optionsAndQuestion");
+        options = getIntent().getExtras().getStringArrayList("options");
 
-        question = options.get(0);
+        question = getIntent().getExtras().getString("question");
         questionTextView.append(question);
         questionTextView.setTextSize(20);
 
@@ -55,11 +57,11 @@ public class selectCorrectOption extends AppCompatActivity {
 
         //Adding Options to the Layout and adding onClick Listener for the same.
         try {
-            for (int i = 1; i < options.size(); i++) {
+            for (int i = 0; i < options.size(); i++) {
                 final TextView option = new TextView(getApplicationContext());
                 option.setText(options.get(i));
                 option.setBackgroundColor(Color.RED);
-                option.setId(i);
+                option.setId(id++);
                 option.setLayoutParams(params);
                 option.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
                 option.setTextSize(20);
@@ -91,7 +93,7 @@ public class selectCorrectOption extends AppCompatActivity {
     //Adding Question to the Firebase when Add button is clicked.
     public void addQuestion(View v) {
         correctOption = "None";
-        for (int i = 1; i < options.size(); i++) {
+        for (int i = 1; i < id; i++) {
             TextView op = findViewById(i);
             if (op.isSelected()) {
                 System.out.println(op.getText());
@@ -110,14 +112,40 @@ public class selectCorrectOption extends AppCompatActivity {
 
     //Adding Data to Firebase.
     public void addQuestionToFirebase() {
-        try {
-            final DatabaseReference questions = mDatabase.child("test").child("questions");
-            String id = questions.push().getKey();
-            Questions questionObject = new Questions(correctOption, question, options);
-            questions.child(id).setValue(questionObject);
-            Toast.makeText(this, "Question Added", Toast.LENGTH_SHORT).show();
-        } catch (Exception e) {
-            e.printStackTrace();
+        Bundle bundle = getIntent().getExtras();
+        if (bundle.containsKey("update") && bundle.getBoolean("update")) {
+            try {
+                FirebaseUser user = mAuth.getCurrentUser();
+                assert user != null;
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final DatabaseReference reference = database.getReference().child("users").child(user.getUid()).child("quiz").child(bundle.getString("QuizName"));
+                Questions questionObject = new Questions(bundle.getString("QuestionIndex"), correctOption, question, options);
+                reference.child(bundle.getString("QuestionIndex")).setValue(questionObject);
+                Intent intent = new Intent(this, listOfQuestions.class);
+                intent.putExtra("QuizName", bundle.getString("QuizName"));
+                startActivity(intent);
+                finish();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                String quizName = bundle.getString("QuizName");
+                FirebaseUser user = mAuth.getCurrentUser();
+                assert user != null;
+                final FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final DatabaseReference reference = database.getReference().child("users").child(user.getUid()).child("quiz").child(quizName);
+                String id = reference.push().getKey();
+                Questions questionObject = new Questions(id, correctOption, question, options);
+                reference.child(id).setValue(questionObject);
+                Intent intent = new Intent(this, listOfQuestions.class);
+                intent.putExtra("QuizName", quizName);
+                startActivity(intent);
+                finish();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 }
+

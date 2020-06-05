@@ -15,7 +15,7 @@
         android:background="#F8C427"
         android:fontFamily="sans-serif"
         android:onClick="generate"
-        android:text="Generate" />
+        android:text="Get Started !" />
 
     <ImageView
         android:id="@+id/img"

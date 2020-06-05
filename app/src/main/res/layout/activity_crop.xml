@@ -6,7 +6,6 @@
     android:orientation="vertical"
     tools:context=".Crop">
 
-
     <ImageView
         android:id="@+id/img"
         android:layout_width="match_parent"
@@ -21,5 +20,5 @@
         android:background="#F8C427"
         android:fontFamily="sans-serif"
         android:onClick="generateQuiz"
-        android:text="Generate" />
+        android:text="@string/generateQues" />
 </LinearLayout>

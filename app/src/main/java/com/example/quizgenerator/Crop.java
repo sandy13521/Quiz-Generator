@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -39,6 +40,10 @@ public class Crop extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crop);
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.hide();
+
         img = findViewById(R.id.img);
         Uri imageUri = getIntent().getData();
         startCropImageActivity(imageUri);
@@ -85,7 +90,6 @@ public class Crop extends AppCompatActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                Toast.makeText(this, "Cropping successful, Sample: " + result.getSampleSize(), Toast.LENGTH_LONG).show();
             } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
                 Toast.makeText(this, "Cropping failed: " + result.getError(), Toast.LENGTH_LONG).show();
             }
@@ -95,6 +99,9 @@ public class Crop extends AppCompatActivity {
     //Passing the captured image to Firebase ML kit API to recognize the text in the image.
     public void generateQuiz(final View v) {
         final Intent intent = new Intent(this, Question.class);
+        Bundle bundle = getIntent().getExtras();
+        intent.putExtra("QuizName", getIntent().getExtras().getString("QuizName"));
+
         try {
             FirebaseVisionTextRecognizer detector = FirebaseVision.getInstance()
                     .getOnDeviceTextRecognizer();
@@ -147,6 +154,7 @@ public class Crop extends AppCompatActivity {
                                     }
                                     intent.putExtra("options", options);
                                     startActivity(intent);
+                                    finish();
                                 }
                             })
                             .addOnFailureListener(
@@ -158,8 +166,7 @@ public class Crop extends AppCompatActivity {
                                         }
                                     });
         } catch (Exception e) {
-            Toast toast = Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT);
-            toast.show();
+            Toast.makeText(this, "Firebase ML Kit Fucked Up!!", Toast.LENGTH_SHORT).show();
         }
     }
 }
