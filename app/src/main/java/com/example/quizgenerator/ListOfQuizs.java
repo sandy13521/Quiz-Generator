@@ -29,18 +29,22 @@ import java.util.List;
 
 public class ListOfQuizs extends AppCompatActivity {
 
+    //Declaring UI Variables.
     public ListView listOfQuiz;
-    private DatabaseReference mDatabase;
-    public List<String> quizNames;
     public FloatingActionButton addButton;
-    private FirebaseAuth mAuth;
     public TextView noneCreated;
     public ProgressBar circle;
+
+    //Declaring Variable.
+    private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
+    public List<String> quizNames;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_quizs);
-        //Removing ActionBar
+
         ActionBar actionbar = getSupportActionBar();
         actionbar.hide();
 
@@ -71,10 +75,11 @@ public class ListOfQuizs extends AppCompatActivity {
                 Intent intent = new Intent(ListOfQuizs.this, listOfQuestions.class);
                 intent.putExtra("QuizName", quizNames.get(position));
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
 
+        //Handling Long Press on List Of Quiz Item.
         listOfQuiz.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
                 AlertDialog.Builder builder
@@ -102,6 +107,7 @@ public class ListOfQuizs extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+        //Retrieving data from Firebase Database
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

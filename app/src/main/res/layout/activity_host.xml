@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context=".HostActivity">
 
+    <ProgressBar
+        android:id="@id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:visibility="gone" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,16 +22,18 @@
             android:id="@+id/finish_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:background="#2CF14F"
-            android:text="Finish" />
+            android:text="@string/finish" />
 
-        <Chronometer
+        <TextView
             android:id="@+id/timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:gravity="end"
             android:padding="8dp"
+            android:text="@string/timer"
             android:textColor="#FFFFFF"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -46,7 +54,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:background="#F8C427"
-            android:text="Previous" />
+            android:text="@string/previous" />
 
         <TextView
             android:id="@+id/question_number"
@@ -54,7 +62,6 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
-            android:text="Q "
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -67,14 +74,13 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="8dp"
             android:background="#F8C427"
-            android:text="Next" />
+            android:text="@string/next" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/question_layout"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
         <TextView
             android:id="@+id/question"
@@ -83,9 +89,15 @@
             android:layout_margin="8dp"
             android:background="#D4DCE7"
             android:padding="8dp"
-            android:text="Q. "
             android:textColor="#1B3A57"
             android:textSize="20sp"
             android:textStyle="italic" />
-    </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/question_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical" />
+    </RelativeLayout>
 </LinearLayout>

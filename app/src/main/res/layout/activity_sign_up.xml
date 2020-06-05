@@ -11,19 +11,21 @@
         android:layout_height="wrap_content"
         android:background="#5608DF"
         android:fontFamily="sans-serif-condensed-light"
+        android:maxLines="1"
         android:padding="10dp"
-        android:text="Sign Up"
+        android:text="@string/signUp"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
 
     <EditText
+        android:inputType="textEmailAddress"
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:contentDescription="Email"
-        android:hint="Enter Your Email Id"
+        android:hint="@string/enterEmail"
+        android:maxLines="1"
         android:padding="8dp" />
 
     <EditText
@@ -31,9 +33,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_marginTop="100px"
-        android:contentDescription="Password"
-        android:hint="Password"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:maxLines="1"
         android:padding="8dp" />
 
     <EditText
@@ -41,9 +43,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:layout_marginTop="100px"
-        android:contentDescription="ConfirmPassword"
-        android:hint="Confirm Password"
+        android:hint="@string/confirmPassword"
+        android:inputType="textPassword"
         android:padding="8dp" />
 
     <Button
@@ -51,10 +52,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="100px"
         android:background="#F8E8E8"
         android:padding="16dp"
-        android:text="Sign Up"
+        android:text="@string/signUp"
         android:textAlignment="center"
         android:textSize="15sp" />
 </LinearLayout>

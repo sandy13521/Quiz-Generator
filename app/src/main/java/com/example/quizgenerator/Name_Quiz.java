@@ -1,7 +1,6 @@
 package com.example.quizgenerator;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,9 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 public class Name_Quiz extends AppCompatActivity {
 
     public static CharSequence quizName;
-    public Uri picUri;
     private FirebaseAuth mAuth;
-    private FirebaseDatabase database;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

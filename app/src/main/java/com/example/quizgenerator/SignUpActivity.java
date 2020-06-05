@@ -81,7 +81,7 @@ public class SignUpActivity extends AppCompatActivity {
                                                             startActivity(intent);
                                                             finish();
                                                         } else {
-                                                            Toast.makeText(SignUpActivity.this, "An Error Occurred", Toast.LENGTH_LONG).show();
+                                                            Toast.makeText(SignUpActivity.this, "Password should have 8 characters", Toast.LENGTH_LONG).show();
                                                         }
                                                     }
                                                 });

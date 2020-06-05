@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -39,6 +40,10 @@ public class Crop extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crop);
+
+        ActionBar actionbar = getSupportActionBar();
+        actionbar.hide();
+
         img = findViewById(R.id.img);
         Uri imageUri = getIntent().getData();
         startCropImageActivity(imageUri);

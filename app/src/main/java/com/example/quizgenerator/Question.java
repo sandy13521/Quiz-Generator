@@ -32,6 +32,7 @@ public class Question extends AppCompatActivity {
         ActionBar actionbar = getSupportActionBar();
         actionbar.hide();
 
+        //Getting the Extras sent from the previous Activity.
         bundle = getIntent().getExtras();
 
         //Question
@@ -88,6 +89,8 @@ public class Question extends AppCompatActivity {
     public void addEditText(View v) {
         EditText option = new EditText(this);
         option.setId(id++);
+        option.setGravity(1);
+        option.setPadding(0, 8, 0, 8);
         edit.addView(option);
     }
 }

@@ -45,6 +45,8 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(StartActivity.this, HostActivity.class);
                 intent.putExtra("QuizName", getIntent().getExtras().getString("QuizName"));
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -53,7 +55,7 @@ public class StartActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(StartActivity.this, HostActivity.class);
                 intent.putExtra("QuizName", getIntent().getExtras().getString("QuizName"));
-                if (!minutesEditText.getText().toString().equals("")) {
+                if (!minutesEditText.getText().toString().equals("") && !minutesEditText.getText().toString().equals("0")) {
                     intent.putExtra("Timer", minutesEditText.getText());
                     startActivity(intent);
                     finish();
