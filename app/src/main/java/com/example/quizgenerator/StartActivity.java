@@ -11,7 +11,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class StartActivity extends AppCompatActivity {
-    //Declaring Variables.
+
+    //Declaring UI Variables.
     public Button yesButton;
     public Button noButton;
     public Button startButton;
@@ -32,6 +33,7 @@ public class StartActivity extends AppCompatActivity {
         startButton = findViewById(R.id.start_button);
         minutesEditText = findViewById(R.id.minutes_edit_text);
 
+        //Handling YES Button
         yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +42,7 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
+        //Handling NO Button
         noButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +52,7 @@ public class StartActivity extends AppCompatActivity {
                 finish();
             }
         });
-
+        //Start Quiz (Start Button)
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

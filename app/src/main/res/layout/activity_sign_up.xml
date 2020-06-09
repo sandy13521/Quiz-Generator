@@ -6,6 +6,13 @@
     android:orientation="vertical"
     tools:context=".SignUpActivity">
 
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,12 +26,12 @@
         android:textSize="30sp" />
 
     <EditText
-        android:inputType="textEmailAddress"
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:hint="@string/enterEmail"
+        android:inputType="textEmailAddress"
         android:maxLines="1"
         android:padding="8dp" />
 
@@ -57,4 +64,13 @@
         android:text="@string/signUp"
         android:textAlignment="center"
         android:textSize="15sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:padding="16dp"
+        android:text="In case you forget your password. Reset Password mail will be sent to the mentioned Email Id."
+        android:textSize="20sp"
+        android:textStyle="italic" />
 </LinearLayout>

@@ -25,18 +25,19 @@ import java.util.ArrayList;
 
 public class previewOfQuestion extends AppCompatActivity {
 
-    //Declaring Variables.
+    //Declaring UI Variables.
     public LinearLayout preview;
     public TextView questionTextView;
+    public Button okButton;
+    public Button edit_Button;
+
+    //Declaring Variables.
     public ArrayList<String> options;
     public FirebaseAuth mAuth;
-    public DatabaseReference reference;
+    public String question;
     public String correctOption;
     public Bundle bundle;
     private FirebaseUser user;
-    public Button okButton;
-    public Button edit_Button;
-    public String question;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

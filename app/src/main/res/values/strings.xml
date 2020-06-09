@@ -33,7 +33,7 @@
     <string name="generateQuiz">Generate Quiz</string>
     <string name="listofquiz">List Of Quizzes</string>
     <string name="logout">Logout</string>
-    <string name="noQuizYet">No Quiz Created Yet</string>
+    <string name="noQuizYet">No Quiz Created Yet !!.</string>
     <string name="newQuiz">Create a New Quiz</string>
     <string name="previous">previous</string>
     <string name="timer">00:00</string>
@@ -42,7 +42,7 @@
     <string name="question">Enter the Question Here.</string>
     <string name="home">Home</string>
     <string name="signUp">Sign Up</string>
-    <string name="enterEmail">Enter you email-id</string>
+    <string name="enterEmail">Enter you Email Id</string>
     <string name="password">Enter your Password</string>
     <string name="confirmPassword">Confirm Password</string>
 </resources>

@@ -3,9 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:noHistory="true"
     android:orientation="vertical"
-    tools:context=".LoginActivity"
-    android:noHistory="true">
+    tools:context=".LoginActivity">
+
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:visibility="gone" />
 
     <TextView
         android:layout_width="match_parent"
@@ -20,11 +28,11 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="50dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="30dp"
         android:contentDescription="Quiz"
-        android:src="@mipmap/ic_launcher_round" />
+        android:src="@mipmap/quiz_logo" />
 
     <EditText
         android:id="@+id/login_email"
@@ -46,12 +54,24 @@
         android:inputType="textPassword"
         android:padding="12dp" />
 
+    <TextView
+        android:id="@+id/forgot_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="16dp"
+        android:text="Forgot Password ?"
+        android:textColor="#979EFF"
+        android:textSize="15sp" />
+
     <Button
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="8dp"
+        android:background="#C6F54E"
+        android:textAllCaps="false"
         android:text="Login" />
 
     <TextView
@@ -69,5 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="8dp"
+        android:background="#F8C427"
+        android:textAllCaps="false"
         android:text="Sign Up" />
 </LinearLayout>

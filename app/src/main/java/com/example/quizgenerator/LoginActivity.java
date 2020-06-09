@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,11 +27,14 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
-    public Button signUpButton;
+    public TextView forgotPassword;
     public EditText emailEditText;
     public EditText passwordEditText;
+    public Button signUpButton;
     public Button loginButton;
+    public ProgressBar progressBar;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,16 @@ public class LoginActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.login_password);
         loginButton = findViewById(R.id.login_button);
         mAuth = FirebaseAuth.getInstance();
+        progressBar = findViewById(R.id.progress);
+        forgotPassword = findViewById(R.id.forgot_password);
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //Handle Sign Up Button Clicks.
         signUpButton.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +67,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(new Intent(LoginActivity.this, SignUpActivity.class));
             }
         });
-
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                     passwordEditText.setError("Enter a password");
                     passwordEditText.requestFocus();
                 } else {
+                    progressBar.setVisibility(View.VISIBLE);
                     //Sign In Using Email and Password.
                     mAuth.signInWithEmailAndPassword(email, password)
                             .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
@@ -86,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                                     }
                                 }
                             });
+                    progressBar.setVisibility(View.GONE);
                 }
             }
         });
@@ -122,10 +138,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
-//
-//    private <T> void checkAndAddData(DatabaseReference reference, DataSnapshot dataSnapshot, String key, T value) {
-//        if (!dataSnapshot.child(key).exists()) {
-//            reference.child(key).setValue(value);
-//        }
-//    }
+
+    private <T> void checkAndAddData(DatabaseReference reference, DataSnapshot dataSnapshot, String key, T value) {
+        if (!dataSnapshot.child(key).exists()) {
+            reference.child(key).setValue(value);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 }

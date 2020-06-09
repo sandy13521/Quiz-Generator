@@ -25,7 +25,6 @@ public class Name_Quiz extends AppCompatActivity {
     public static CharSequence quizName;
     private FirebaseAuth mAuth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +70,7 @@ public class Name_Quiz extends AppCompatActivity {
         });
     }
 
+    //Verifying is the tree/path already exists.
     private <T> void checkAndAddData(DatabaseReference reference, DataSnapshot dataSnapshot, String key, T value) {
         if (!dataSnapshot.child(key).exists()) {
             reference.child(key).setValue(value);
