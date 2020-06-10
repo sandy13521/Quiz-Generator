@@ -33,16 +33,19 @@
             android:text="Q. "
             android:textSize="25sp" />
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="200dp"
+            android:scrollbarStyle="insideInset"
+            android:overScrollMode="never"
+            android:layout_height="wrap_content">
         <LinearLayout
             android:id="@+id/selectLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="8dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-        </LinearLayout>
+            android:orientation="vertical" />
+        </ScrollView>
     </RelativeLayout>
 
     <Button
@@ -51,8 +54,9 @@
         android:layout_height="wrap_content"
         android:background="#9AD9DF"
         android:onClick="addQuestion"
-        android:paddingLeft="8dp"
-        android:text="Add"
+        android:padding="8dp"
+        android:textAllCaps="false"
+        android:text="Add to Quiz"
         android:textStyle="bold" />
 </LinearLayout>
 

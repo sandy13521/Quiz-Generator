@@ -33,6 +33,7 @@ public class listOfQuestions extends AppCompatActivity {
     private DatabaseReference mDatabase;
     public List<Questions> listOfQuestion;
     public Button finishButton;
+    public Button hostQuizButton;
     public FloatingActionButton addQuestionButton;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
@@ -51,6 +52,30 @@ public class listOfQuestions extends AppCompatActivity {
         questionsListView = findViewById(R.id.questions);
         finishButton = findViewById(R.id.finish_quiz_button);
         addQuestionButton = findViewById(R.id.add_question_button);
+        hostQuizButton = findViewById(R.id.host);
+
+        hostQuizButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder
+                        = new AlertDialog
+                        .Builder(listOfQuestions.this);
+                builder
+                        .setTitle("Host Quiz!")
+                        .setMessage("Shall we Host?")
+                        .setNegativeButton(android.R.string.no, null)
+                        .setCancelable(false)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent intent = new Intent(listOfQuestions.this, StartActivity.class);
+                                intent.putExtra("QuizName", quizName);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }).create().show();
+            }
+        });
 
         //Getting Firebase Instance
         mAuth = FirebaseAuth.getInstance();
@@ -59,6 +84,7 @@ public class listOfQuestions extends AppCompatActivity {
         assert user != null;
         if (bundle != null && bundle.containsKey("QuizName")) {
             quizName = bundle.getString("QuizName");
+            hostQuizButton.setVisibility(View.VISIBLE);
         } else {
             quizName = Name_Quiz.quizName.toString();
         }
@@ -67,8 +93,6 @@ public class listOfQuestions extends AppCompatActivity {
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(listOfQuestions.this, ListOfQuizs.class);
-                startActivity(intent);
                 finish();
             }
         });

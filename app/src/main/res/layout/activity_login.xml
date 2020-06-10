@@ -21,7 +21,7 @@
         android:background="#5608DF"
         android:fontFamily="sans-serif-condensed-light"
         android:padding="10dp"
-        android:text="Log In"
+        android:text="@string/login"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
@@ -31,7 +31,7 @@
         android:layout_height="150dp"
         android:layout_marginTop="50dp"
         android:layout_marginBottom="30dp"
-        android:contentDescription="Quiz"
+        android:contentDescription="@string/app_name"
         android:src="@mipmap/quiz_logo" />
 
     <EditText
@@ -39,7 +39,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:hint="Email Id"
+        android:autofillHints="@string/enterEmail"
+        android:hint="@string/enterEmail"
         android:importantForAutofill="no"
         android:inputType="textEmailAddress"
         android:padding="12dp" />
@@ -49,7 +50,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:hint="Password"
+        android:autofillHints="@string/password"
+        android:hint="@string/password"
         android:importantForAutofill="no"
         android:inputType="textPassword"
         android:padding="12dp" />
@@ -60,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_marginEnd="16dp"
-        android:text="Forgot Password ?"
+        android:text="@string/forgot_password"
         android:textColor="#979EFF"
         android:textSize="15sp" />
 
@@ -71,14 +73,14 @@
         android:layout_gravity="center"
         android:layout_margin="8dp"
         android:background="#C6F54E"
-        android:textAllCaps="false"
-        android:text="Login" />
+        android:text="@string/login"
+        android:textAllCaps="false" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:text="New to the App. Sign Up to proceed."
+        android:text="@string/new_to_app"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="italic" />
@@ -90,6 +92,6 @@
         android:layout_gravity="center"
         android:layout_margin="8dp"
         android:background="#F8C427"
-        android:textAllCaps="false"
-        android:text="Sign Up" />
+        android:text="@string/signUp"
+        android:textAllCaps="false" />
 </LinearLayout>

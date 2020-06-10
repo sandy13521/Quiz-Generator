@@ -321,4 +321,8 @@ public class HostActivity extends AppCompatActivity {
         String scoreString = "" + score + "/" + questions.size();
         scoreReference.setValue(scoreString);
     }
+
+    @Override
+    public void onBackPressed() {
+    }
 }

@@ -30,6 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:autofillHints="@string/enterEmail"
         android:hint="@string/enterEmail"
         android:inputType="textEmailAddress"
         android:maxLines="1"
@@ -40,7 +41,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        android:hint="@string/password"
+        android:autofillHints="@string/enterpassword"
+        android:hint="@string/enterpassword"
         android:inputType="textPassword"
         android:maxLines="1"
         android:padding="8dp" />
@@ -50,6 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:autofillHints="@string/confirmPassword"
         android:hint="@string/confirmPassword"
         android:inputType="textPassword"
         android:padding="8dp" />
@@ -70,7 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:padding="16dp"
-        android:text="In case you forget your password. Reset Password mail will be sent to the mentioned Email Id."
+        android:text="@string/forgot_password_footer"
         android:textSize="20sp"
         android:textStyle="italic" />
 </LinearLayout>

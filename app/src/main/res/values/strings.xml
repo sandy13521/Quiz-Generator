@@ -43,6 +43,13 @@
     <string name="home">Home</string>
     <string name="signUp">Sign Up</string>
     <string name="enterEmail">Enter you Email Id</string>
-    <string name="password">Enter your Password</string>
+    <string name="enterpassword">Enter your Password</string>
     <string name="confirmPassword">Confirm Password</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="new_to_app">New to the App. Sign Up to proceed.</string>
+    <string name="signup">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="forgot_password_footer">In case you forget your password. Reset Password mail will be sent to the mentioned Email Id.</string>
 </resources>
+
