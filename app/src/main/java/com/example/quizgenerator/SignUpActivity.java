@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,12 +22,14 @@ import com.google.firebase.auth.SignInMethodQueryResult;
 import java.util.Objects;
 
 public class SignUpActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;
 
     public EditText emailEditText;
     public EditText passwordEditText;
     public EditText confirmPasswordEditText;
     public Button signUpButton;
+    public ProgressBar progressBar;
+
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +43,11 @@ public class SignUpActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.password);
         confirmPasswordEditText = findViewById(R.id.confirmPassword);
         signUpButton = findViewById(R.id.sign_up_button);
+        progressBar = findViewById(R.id.progress);
 
         mAuth = FirebaseAuth.getInstance();
 
+        //Handling Sign Up Button
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +62,7 @@ public class SignUpActivity extends AppCompatActivity {
                     confirmPasswordEditText.setError("Passwords do not match");
                     confirmPasswordEditText.requestFocus();
                 } else {
+                    progressBar.setVisibility(View.VISIBLE);
                     mAuth.fetchSignInMethodsForEmail(email)
                             .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
                                 @Override
@@ -73,9 +79,8 @@ public class SignUpActivity extends AppCompatActivity {
                                                         if (task.isSuccessful()) {
                                                             FirebaseUser user = mAuth.getCurrentUser();
                                                             assert user != null;
-                                                            mAuth.signOut();
-
-                                                            //Go Back to Login Page.
+                                                            progressBar.setVisibility(View.GONE);
+                                                            //Go Back to Dashboard Page.
                                                             Intent intent = new Intent(SignUpActivity.this, Dashboard.class);
                                                             intent.putExtra("registration", true);
                                                             startActivity(intent);

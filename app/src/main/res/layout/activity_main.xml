@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5608DF"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -13,19 +12,19 @@
         android:layout_alignTop="@+id/img"
         android:layout_centerInParent="true"
         android:background="#F8C427"
-        android:fontFamily="sans-serif"
+        android:fontFamily="sans-serif-condensed-medium"
         android:onClick="generate"
-        android:text="Get Started !" />
+        android:textAllCaps="false"
+        android:text="Get Started!" />
 
     <ImageView
         android:id="@+id/img"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="600dp"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:layout_marginTop="100dp"
         android:contentDescription="Quiz"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/background_1_foreground" />
+        android:src="@drawable/quiz_main_foreground" />
 
 </RelativeLayout>

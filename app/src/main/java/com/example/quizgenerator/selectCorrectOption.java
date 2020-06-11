@@ -30,6 +30,8 @@ public class selectCorrectOption extends AppCompatActivity {
     public String question;
     private FirebaseAuth mAuth;
     public int id = 1;
+    public boolean status = false;
+    public int selectedOption;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,20 +68,29 @@ public class selectCorrectOption extends AppCompatActivity {
                 option.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
                 option.setTextSize(20);
                 option.setVisibility(View.VISIBLE);
-                option.setPadding(8, 8, 8, 8);
+                option.setPadding(8, 16, 8, 16);
                 option.setOnClickListener(new View.OnClickListener() {
-                    boolean status = false;
+
 
                     @Override
                     public void onClick(View v) {
                         if (!status) {
                             option.setBackgroundColor(Color.GREEN);
                             option.setSelected(true);
+                            selectedOption = option.getId();
                             status = true;
                         } else {
-                            option.setBackgroundColor(Color.RED);
-                            option.setSelected(false);
-                            status = false;
+                            TextView sv = findViewById(selectedOption);
+                            sv.setSelected(false);
+                            sv.setBackgroundColor(Color.RED);
+                            if (selectedOption != option.getId()) {
+                                option.setBackgroundColor(Color.GREEN);
+                                option.setSelected(true);
+                                selectedOption = option.getId();
+                                status = true;
+                            } else {
+                                status = false;
+                            }
                         }
                     }
                 });
@@ -146,6 +157,10 @@ public class selectCorrectOption extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }
 

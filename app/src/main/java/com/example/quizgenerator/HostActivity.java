@@ -242,15 +242,28 @@ public class HostActivity extends AppCompatActivity {
             }
 
             public void onFinish() {
-                Intent intent = new Intent(HostActivity.this, FinishActivity.class);
-                progressBar.setVisibility(View.VISIBLE);
-                computeScoreAndUpdateDb();
-                intent.putExtra("score", score);
-                intent.putExtra("totalQuestion", questions.size());
-                intent.putExtra("QuizName", quizName);
-                progressBar.setVisibility(View.GONE);
-                startActivity(intent);
-                finish();
+                AlertDialog.Builder builder
+                        = new AlertDialog
+                        .Builder(HostActivity.this);
+                builder
+                        .setTitle("Finish Quiz !")
+                        .setMessage("The Time Alloted Finished. Thank You.")
+                        .setNegativeButton(android.R.string.no, null)
+                        .setCancelable(true)
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Intent intent = new Intent(HostActivity.this, FinishActivity.class);
+                                progressBar.setVisibility(View.VISIBLE);
+                                computeScoreAndUpdateDb();
+                                progressBar.setVisibility(View.GONE);
+                                intent.putExtra("score", score);
+                                intent.putExtra("totalQuestion", questions.size());
+                                intent.putExtra("QuizName", quizName);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }).create().show();
             }
         }.start();
     }
@@ -307,5 +320,9 @@ public class HostActivity extends AppCompatActivity {
         }
         String scoreString = "" + score + "/" + questions.size();
         scoreReference.setValue(scoreString);
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

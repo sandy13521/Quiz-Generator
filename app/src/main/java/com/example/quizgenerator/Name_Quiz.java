@@ -24,7 +24,7 @@ public class Name_Quiz extends AppCompatActivity {
 
     public static CharSequence quizName;
     private FirebaseAuth mAuth;
-
+    public boolean status;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +43,14 @@ public class Name_Quiz extends AppCompatActivity {
     public void openCamera(View v) {
         if (quizName.length() != 0) {
             insertQuiz();
-            Intent intent = new Intent(this, Crop.class);
-            intent.putExtra("QuizName", quizName.toString());
-            startActivity(intent);
+            if (status) {
+                Intent intent = new Intent(this, Crop.class);
+                intent.putExtra("QuizName", quizName.toString());
+                startActivity(intent);
+                finish();
+            }
         } else {
-            Toast toast = Toast.makeText(this, "Enter the quiz Name", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, "Enter the Quiz Name", Toast.LENGTH_SHORT);
             toast.show();
         }
     }
@@ -60,7 +63,7 @@ public class Name_Quiz extends AppCompatActivity {
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                checkAndAddData(reference, dataSnapshot, quizName.toString(), 0);
+                status = checkAndAddData(reference, dataSnapshot, quizName.toString(), 0);
             }
 
             @Override
@@ -71,9 +74,13 @@ public class Name_Quiz extends AppCompatActivity {
         });
     }
 
-    private <T> void checkAndAddData(DatabaseReference reference, DataSnapshot dataSnapshot, String key, T value) {
-        if (!dataSnapshot.child(key).exists()) {
-            reference.child(key).setValue(value);
+    //Verifying is the tree/path already exists.
+    private <T> boolean checkAndAddData(DatabaseReference reference, DataSnapshot dataSnapshot, String key, T value) {
+        if (dataSnapshot.child(key).exists()) {
+            Toast.makeText(Name_Quiz.this, "Quiz with the Same Name Already Exists !", Toast.LENGTH_SHORT).show();
+            return false;
+        } else {
+            return true;
         }
     }
 }

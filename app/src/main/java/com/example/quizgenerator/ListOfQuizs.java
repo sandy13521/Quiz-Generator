@@ -39,6 +39,7 @@ public class ListOfQuizs extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     public List<String> quizNames;
+    public FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +51,7 @@ public class ListOfQuizs extends AppCompatActivity {
 
         //Initializing Variables.
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
+        user = mAuth.getCurrentUser();
         noneCreated = findViewById(R.id.noQuiz);
         circle = findViewById(R.id.progress);
         circle.setVisibility(View.VISIBLE);
@@ -86,17 +87,15 @@ public class ListOfQuizs extends AppCompatActivity {
                         = new AlertDialog
                         .Builder(ListOfQuizs.this);
                 builder
-                        .setTitle("Host Quiz!")
-                        .setMessage("Shall we continue?")
+                        .setTitle("Delete Quiz ?")
+                        .setMessage("Do you wish to Delete the Quiz ? \n Confirm !?")
                         .setNegativeButton(android.R.string.no, null)
                         .setCancelable(false)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface arg0, int arg1) {
-                                Intent intent = new Intent(ListOfQuizs.this, StartActivity.class);
-                                intent.putExtra("QuizName", quizNames.get(position));
-                                startActivity(intent);
-                                finish();
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("quiz").child(quizNames.get(position));
+                                reference.setValue(null);
                             }
                         }).create().show();
                 return true;
@@ -108,7 +107,7 @@ public class ListOfQuizs extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         //Retrieving data from Firebase Database
-        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 quizNames.clear();

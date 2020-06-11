@@ -9,61 +9,77 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#5608DF">
-    <TextView
-        android:layout_width="0dp"
-        android:layout_gravity="start"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed-light"
-        android:padding="10dp"
-        android:paddingStart="50dp"
-        android:layout_weight="1"
-        android:text="@string/dashboard"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp" />
+        android:background="#5608DF"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-condensed-light"
+            android:padding="10dp"
+            android:paddingStart="70dp"
+            android:text="@string/dashboard"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="30dp"
-            android:layout_marginEnd="10dp"
             android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
             android:background="#F8C427"
             android:onClick="logout"
             android:text="@string/logout"
             android:textSize="15sp" />
     </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/host"
-        android:textAlignment="center"
-        android:textSize="20sp" />
 
-    <ImageButton
-        android:id="@+id/host_quiz"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@mipmap/host_quiz_foreground"
-        android:contentDescription="@string/host" />
+        android:layout_weight="1">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/create"
-        android:layout_marginTop="20dp"
-        android:textAlignment="center"
-        android:textSize="20sp" />
+        <ImageButton
+            android:id="@+id/host_quiz"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/attend_quiz_foreground"
+            android:contentDescription="@string/host" />
 
-    <ImageButton
-        android:id="@+id/create_quiz"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dip"
+            android:background="#AA000000"
+            android:padding="12dip"
+            android:text="Host And Modify Quizzes"
+            android:textColor="#ffffffff" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:scaleType="centerCrop"
-        android:background="@mipmap/quiz_creator_foreground"
-        android:contentDescription="@string/create" />
+        android:layout_weight="1">
+
+        <ImageButton
+            android:id="@+id/create_quiz"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/create_quiz_foreground"
+            android:contentDescription="@string/create"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dip"
+
+            android:background="#AA000000"
+            android:padding="12dip"
+            android:text="Create Quiz"
+            android:textColor="#ffffffff" />
+    </RelativeLayout>
 </LinearLayout>

@@ -52,6 +52,7 @@ public class Guidance extends AppCompatActivity {
                             requestCode);
         } else {
             startActivity(intent);
+            finish();
         }
     }
 

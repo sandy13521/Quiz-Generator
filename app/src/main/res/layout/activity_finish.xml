@@ -7,6 +7,7 @@
     tools:context=".FinishActivity">
 
     <LinearLayout
+        android:id="@+id/layout_score"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:background="#67FF53"

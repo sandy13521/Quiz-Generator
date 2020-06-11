@@ -101,5 +101,6 @@
         android:background="#F8C427"
         android:fontFamily="sans-serif"
         android:onClick="getGoing"
+        android:textAllCaps="false"
         android:text="@string/generateQuiz" />
 </LinearLayout>
