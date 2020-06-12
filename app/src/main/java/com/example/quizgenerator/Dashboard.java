@@ -31,7 +31,7 @@ public class Dashboard extends AppCompatActivity {
         hostQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Dashboard.this, ListOfQuizs.class);
+                Intent intent = new Intent(Dashboard.this, Tab_activity.class);
                 startActivity(intent);
             }
         });
