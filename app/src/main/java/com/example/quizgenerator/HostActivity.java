@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -34,8 +35,8 @@ import java.util.Locale;
 public class HostActivity extends AppCompatActivity {
 
     //Declaring UI variables.
-    public Button previousButton;
-    public Button nextButton;
+    public ImageButton previousButton;
+    public ImageButton nextButton;
     public Button finishButton;
     public LinearLayout questionLayout;
     public TextView questionNumber;
@@ -49,7 +50,6 @@ public class HostActivity extends AppCompatActivity {
     public FirebaseUser user;
     public FirebaseDatabase mDatabse;
     public List<Questions> questions;
-    public List<HostedQuestion> hostedQuestions;
     public int[] selectedOptions;
     public Bundle bundle;
     public int curQuestion;

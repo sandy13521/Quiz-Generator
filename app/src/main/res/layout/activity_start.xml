@@ -19,38 +19,29 @@
         android:textColor="#FFFFFF"
         android:textSize="30sp" />
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:text="Do you wish to set a Timer ?"
-        android:textSize="30sp" />
+        android:layout_margin="8dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="50dp"
-        android:orientation="horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="20dp"
+            android:text="Do you wish to set \na Timer ?"
+            android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/yes_button"
+        <Switch
+            android:id="@+id/switch_timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginRight="16dp"
-            android:background="#F8C427"
-            android:padding="8dp"
-            android:text="YES" />
-
-        <Button
-            android:id="@+id/no_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:background="#FBF2D4"
-            android:padding="8dp"
-            android:text="NO" />
-    </LinearLayout>
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="40dp"
+            android:padding="16dp" />
+    </RelativeLayout>
 
     <EditText
         android:id="@+id/minutes_edit_text"
@@ -71,15 +62,14 @@
         android:layout_marginTop="30dp"
         android:background="@color/colorAccent"
         android:text="Start"
-        android:textColor="#FFFFFF"
-        android:visibility="invisible" />
+        android:textColor="#FFFFFF" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_margin="16dp"
-        android:text="As soon as you press 'Start' or 'No' the Quiz start."
+        android:text="If you opt to have a Timer you must enter the time duration in minuts."
         android:textSize="20sp"
         android:textStyle="italic" />
 </LinearLayout>
