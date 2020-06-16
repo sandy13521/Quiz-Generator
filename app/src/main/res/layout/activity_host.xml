@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:visibility="gone" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,6 +28,15 @@
             android:text="@string/finish" />
 
         <TextView
+            android:id="@+id/question_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -39,65 +49,79 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbarStyle="insideInset">
+
+            <TextView
+                android:id="@+id/question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:background="#D4DCE7"
+                android:padding="8dp"
+                android:scrollbars="vertical"
+                android:textColor="#1B3A57"
+                android:textSize="20sp"
+                android:textStyle="italic" />
+        </ScrollView>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:id="@+id/question_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="vertical" />
+        </ScrollView>
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#EFF0F1"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
             android:id="@+id/previous_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_centerHorizontal="true"
             android:background="#F8C427"
-            android:text="@string/previous" />
+            android:contentDescription="@string/previous"
+            android:paddingStart="32dp"
+            android:paddingTop="16dp"
+            android:paddingEnd="32dp"
+            android:paddingBottom="16dp"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
 
-        <TextView
-            android:id="@+id/question_number"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <Button
+        <ImageButton
             android:id="@+id/next_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
+            android:layout_centerHorizontal="true"
             android:background="#F8C427"
-            android:text="@string/next" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <TextView
-            android:id="@+id/question"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="#D4DCE7"
-            android:padding="8dp"
-            android:textColor="#1B3A57"
-            android:textSize="20sp"
-            android:textStyle="italic" />
-
-        <LinearLayout
-            android:id="@+id/question_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:orientation="vertical" />
+            android:contentDescription="@string/next"
+            android:paddingLeft="32dp"
+            android:paddingTop="16dp"
+            android:paddingRight="32dp"
+            android:paddingBottom="16dp"
+            android:src="@drawable/ic_arrow_forward_black_24dp" />
     </RelativeLayout>
 </LinearLayout>

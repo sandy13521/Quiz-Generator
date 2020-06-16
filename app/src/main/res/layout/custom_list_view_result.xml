@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@drawable/layout_bg_result"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/name_of_quiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:padding="8dp"
+        android:text="Test Name"
+        android:textColor="#34AF6F"
+        android:textSize="25sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/score_in_quiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:textColor="#155AE5"
+        android:padding="8dp"
+        android:textStyle="bold"
+        android:text="20/30"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/quiz_date"
+        android:text="20/12/2020"
+        android:textSize="15sp"
+        android:padding="8dp"
+        android:textStyle="bold"
+        android:textColor="#FAD366"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/name_of_quiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

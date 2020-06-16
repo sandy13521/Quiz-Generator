@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
@@ -13,11 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class StartActivity extends AppCompatActivity {
 
     //Declaring UI Variables.
-    public Button yesButton;
-    public Button noButton;
+    public Switch aSwitch;
     public Button startButton;
     public EditText minutesEditText;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,49 +27,45 @@ public class StartActivity extends AppCompatActivity {
         actionbar.hide();
 
         //Initializing Variables.
-        yesButton = findViewById(R.id.yes_button);
-        noButton = findViewById(R.id.no_button);
+        aSwitch = findViewById(R.id.switch_timer);
         startButton = findViewById(R.id.start_button);
         minutesEditText = findViewById(R.id.minutes_edit_text);
 
-        //Handling YES Button
-        yesButton.setOnClickListener(new View.OnClickListener() {
+        //Handling the Toggle Bar and minutes Edit Text Visibility.
+        aSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startButton.setVisibility(View.VISIBLE);
-                minutesEditText.setVisibility(View.VISIBLE);
+                if (aSwitch.isChecked()) {
+                    minutesEditText.setVisibility(View.VISIBLE);
+                } else {
+                    minutesEditText.setVisibility(View.INVISIBLE);
+                }
             }
         });
 
-        //Handling NO Button
-        noButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StartActivity.this, HostActivity.class);
-                intent.putExtra("QuizName", getIntent().getExtras().getString("QuizName"));
-                startActivity(intent);
-                finish();
-            }
-        });
         //Start Quiz (Start Button)
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(StartActivity.this, HostActivity.class);
                 intent.putExtra("QuizName", getIntent().getExtras().getString("QuizName"));
-                if (!minutesEditText.getText().toString().equals("") && !minutesEditText.getText().toString().equals("0")) {
-                    intent.putExtra("Timer", minutesEditText.getText());
+                if (aSwitch.isChecked()) {
+                    if (!minutesEditText.getText().toString().equals("") && !minutesEditText.getText().toString().equals("0")) {
+                        intent.putExtra("Timer", minutesEditText.getText());
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        AlertDialog.Builder alert = new AlertDialog.Builder(StartActivity.this);
+                        alert.setTitle("Missing Something!");
+                        alert.setMessage("Please Enter the Duration of the Quiz in minutes");
+                        alert.setPositiveButton("OK", null);
+                        alert.show();
+                    }
+                } else {
                     startActivity(intent);
                     finish();
-                } else {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(StartActivity.this);
-                    alert.setTitle("Missing Something!");
-                    alert.setMessage("Please Enter the Duration of the Quiz in minutes");
-                    alert.setPositiveButton("OK", null);
-                    alert.show();
                 }
             }
         });
-
     }
 }

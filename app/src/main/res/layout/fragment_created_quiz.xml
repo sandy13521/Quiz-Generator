@@ -1,28 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ListOfQuizs">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:background="#5608DF"
-            android:fontFamily="sans-serif-condensed-light"
-            android:padding="10dp"
-            android:text="Quizzes"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp" />
 
         <ProgressBar
             android:id="@+id/progress"
@@ -35,10 +21,10 @@
             android:id="@+id/noQuiz"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@string/noQuizYet"
-            android:textAlignment="center"
             android:layout_gravity="center"
             android:gravity="center"
+            android:text="@string/noQuizYet"
+            android:textAlignment="center"
             android:textSize="25sp" />
 
         <ListView
@@ -51,11 +37,12 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add"
+        android:onClick="addQuiz"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="24dp"
-        android:src="@drawable/ic_add_white_24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:src="@drawable/ic_add_white_24dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
