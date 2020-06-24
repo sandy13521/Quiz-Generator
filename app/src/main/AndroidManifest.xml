@@ -36,9 +36,6 @@
             android:name=".LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ListOfQuizs"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".listOfQuestions"
             android:screenOrientation="portrait" />
         <activity
