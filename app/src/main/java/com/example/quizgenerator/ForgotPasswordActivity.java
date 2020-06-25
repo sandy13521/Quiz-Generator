@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,8 +26,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.hide();
+//        ActionBar actionbar = getSupportActionBar();
+//        actionbar.hide();
 
         emailId = findViewById(R.id.email_edit_text);
         resetPassword = findViewById(R.id.reset_password);

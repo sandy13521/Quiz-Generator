@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,8 +37,8 @@ public class selectCorrectOption extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_correct_option);
 
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.hide();
+//        ActionBar actionbar = getSupportActionBar();
+//        actionbar.hide();
 
         // Getting DataBase Reference
         mAuth = FirebaseAuth.getInstance();

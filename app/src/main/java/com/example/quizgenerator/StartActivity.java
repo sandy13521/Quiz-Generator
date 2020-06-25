@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,8 +22,8 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.hide();
+//        ActionBar actionbar = getSupportActionBar();
+//        actionbar.hide();
 
         //Initializing Variables.
         aSwitch = findViewById(R.id.switch_timer);

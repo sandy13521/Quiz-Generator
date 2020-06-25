@@ -10,7 +10,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -44,8 +43,8 @@ public class listOfQuestions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_questions);
 
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.hide();
+//        ActionBar actionbar = getSupportActionBar();
+//        actionbar.hide();
 
         //Initializing variables.
         listOfQuestion = new ArrayList<>();
