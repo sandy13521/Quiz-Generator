@@ -54,5 +54,8 @@
     <string name="title_activity_tab_activity">Tab_activity</string>
     <string name="tab_text_1">Created</string>
     <string name="tab_text_2">Results</string>
+    <string name="tab_heading">QUIZZES</string>
+    <string name="tab_1">Created</string>
+    <string name="tab_2">Results</string>
 </resources>
 

@@ -7,7 +7,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -27,10 +26,6 @@ public class Question extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
         TextView header = findViewById(R.id.name);
-
-        //Removing ActionBar
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.hide();
 
         //Getting the Extras sent from the previous Activity.
         bundle = getIntent().getExtras();

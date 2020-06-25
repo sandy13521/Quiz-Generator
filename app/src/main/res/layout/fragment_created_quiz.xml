@@ -38,6 +38,7 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add"
         android:onClick="addQuiz"
+        android:background="@color/colorAccent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="wrap_content"

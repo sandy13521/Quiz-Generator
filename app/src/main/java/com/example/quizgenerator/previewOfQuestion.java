@@ -10,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +35,7 @@ public class previewOfQuestion extends AppCompatActivity {
     public FirebaseAuth mAuth;
     public String question;
     public String correctOption;
+    public String selectedOption;
     public Bundle bundle;
     private FirebaseUser user;
 
@@ -43,9 +43,6 @@ public class previewOfQuestion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preview_of_question);
-
-        ActionBar actionbar = getSupportActionBar();
-        actionbar.hide();
 
         //Initializing Variables
         okButton = findViewById(R.id.ok_button);

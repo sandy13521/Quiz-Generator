@@ -1,10 +1,13 @@
 package com.example.quizgenerator.ui.main;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -12,8 +15,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.example.quizgenerator.HostActivity;
 import com.example.quizgenerator.R;
 import com.example.quizgenerator.ResultAdapter;
 import com.example.quizgenerator.Results;
@@ -39,6 +44,7 @@ public class ResultFragment extends Fragment {
     private FirebaseAuth mAuth;
     public static List<Results> resultData;
     public FirebaseUser user;
+    public ArrayList<String> hostId;
 
     @Override
     public View onCreateView(
@@ -60,17 +66,52 @@ public class ResultFragment extends Fragment {
         user = mAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("hosted");
         resultData = new ArrayList<>();
+        hostId = new ArrayList<>();
 
+        results.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent1 = new Intent(getActivity(), HostActivity.class);
+                intent1.putExtra("hosted", true);
+                intent1.putExtra("QuizName", resultData.get(position).getQuizName());
+                intent1.putExtra("Id", hostId.get(position));
+                startActivity(intent1);
+            }
+        });
+
+        results.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                AlertDialog.Builder builder
+                        = new AlertDialog
+                        .Builder(getActivity());
+                builder
+                        .setTitle("Delete Quiz ?")
+                        .setMessage("Do you wish to Delete the Results of this Quiz ?\nConfirm !?")
+                        .setNegativeButton(android.R.string.no, null)
+                        .setCancelable(false)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface arg0, int arg1) {
+                                Log.i("ID", resultData.get(position).getQuizName());
+                                Log.i("ID", hostId.get(position));
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("hosted").child(resultData.get(position).getQuizName()).child(hostId.get(position));
+                                reference.setValue(null);
+                            }
+                        }).create().show();
+                return true;
+            }
+        });
         //Retrieving data from Firebase Database
-        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 resultData.clear();
-
+                hostId.clear();
                 for (DataSnapshot quizSnapshot : dataSnapshot.getChildren()) {
-                    Log.i("QUIZ NAME", quizSnapshot.getKey());
                     String q = quizSnapshot.getKey();
                     for (DataSnapshot r : quizSnapshot.getChildren()) {
+                        hostId.add(r.getKey());
                         String d = "";
                         String s = "";
                         for (DataSnapshot result : r.getChildren()) {

@@ -2,6 +2,7 @@ package com.example.quizgenerator.ui.main;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +56,7 @@ public class PlaceholderFragment extends Fragment {
             Bundle savedInstanceState) {
         View myView = inflater.inflate(R.layout.fragment_created_quiz, container, false);
         addButton = myView.findViewById(R.id.add);
+        addButton.setBackgroundColor(Color.argb(1, 248, 62, 125));
         return myView;
     }
 
@@ -67,6 +69,7 @@ public class PlaceholderFragment extends Fragment {
         circle = view.findViewById(R.id.progress);
         circle.setVisibility(View.VISIBLE);
         listOfQuiz = view.findViewById(R.id.listOfquizs);
+        addButton.setBackgroundColor(Color.argb(1, 248, 62, 125));
         mDatabase = FirebaseDatabase.getInstance().getReference("users").child(user.getUid()).child("quiz");
         quizNames = new ArrayList<>();
         listOfQuiz.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -121,6 +124,5 @@ public class PlaceholderFragment extends Fragment {
                 Toast.makeText(getContext(), "Firebase is Broken!!! Shit", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 }
