@@ -35,6 +35,7 @@ public class previewOfQuestion extends AppCompatActivity {
     public FirebaseAuth mAuth;
     public String question;
     public String correctOption;
+    public String selectedOption;
     public Bundle bundle;
     private FirebaseUser user;
 
@@ -42,9 +43,6 @@ public class previewOfQuestion extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_preview_of_question);
-
-//        ActionBar actionbar = getSupportActionBar();
-//        actionbar.hide();
 
         //Initializing Variables
         okButton = findViewById(R.id.ok_button);

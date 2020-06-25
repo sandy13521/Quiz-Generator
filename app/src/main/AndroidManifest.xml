@@ -14,6 +14,7 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".Tab_activity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/tab_heading" />
 
         <activity android:name=".ForgotPasswordActivity" />

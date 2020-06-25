@@ -49,6 +49,7 @@ public class HostActivity extends AppCompatActivity {
     public FirebaseUser user;
     public FirebaseDatabase mDatabse;
     public List<Questions> questions;
+    public List<HostedQuestion> hostedQuestions;
     public int[] selectedOptions;
     public Bundle bundle;
     public int curQuestion;
@@ -59,9 +60,6 @@ public class HostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host);
-
-//        ActionBar actionbar = getSupportActionBar();
-//        actionbar.hide();
 
         //Initializing Variables.
         previousButton = findViewById(R.id.previous_button);
@@ -79,6 +77,122 @@ public class HostActivity extends AppCompatActivity {
         user = mAuth.getCurrentUser();
         curQuestion = 0;
         questions = new ArrayList<>();
+        hostedQuestions = new ArrayList<>();
+
+        // Handling the Event of Viewing the result after one has appeared in the Quiz.
+        if (bundle.containsKey("hosted")) {
+            timer.setVisibility(View.INVISIBLE);
+            finishButton.setVisibility(View.INVISIBLE);
+            final String quizName = bundle.getString("QuizName");
+            final String id = bundle.getString("Id");
+            DatabaseReference reference = mDatabse.getReference().child("users").child(user.getUid()).child("hosted").child(quizName).child(id).child("quiz");
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot questionSnapshot : dataSnapshot.getChildren()) {
+                        HostedQuestion gotQuestion = questionSnapshot.getValue(HostedQuestion.class);
+                        hostedQuestions.add(gotQuestion);
+                    }
+                    AddTextViewsHosted();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getApplicationContext(), "Firebase is Broken!!! Shit", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            //Handling Next Button
+            nextButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (curQuestion != hostedQuestions.size() - 1) {
+                        questionLayout.removeAllViews();
+                        curQuestion += 1;
+                        AddTextViewsHosted();
+                        if (curQuestion == hostedQuestions.size() - 1) {
+                            nextButton.setVisibility(View.INVISIBLE);
+                        }
+                        if (previousButton.getVisibility() == View.INVISIBLE) {
+                            previousButton.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+            });
+
+            //Handling Previous Button
+            previousButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (curQuestion != 0) {
+                        questionLayout.removeAllViews();
+                        curQuestion -= 1;
+                        AddTextViewsHosted();
+                        if (curQuestion == 0) {
+                            previousButton.setVisibility(View.INVISIBLE);
+                        }
+                        if (curQuestion != hostedQuestions.size() - 1) {
+                            nextButton.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+            });
+        } else {
+            //Handling Next Button
+            nextButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (curQuestion != questions.size() - 1) {
+                        questionLayout.removeAllViews();
+                        curQuestion += 1;
+                        AddTextViews(selectedOptions[curQuestion]);
+                        if (curQuestion == questions.size() - 1) {
+                            nextButton.setVisibility(View.INVISIBLE);
+                        }
+                        if (previousButton.getVisibility() == View.INVISIBLE) {
+                            previousButton.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+            });
+
+            //Handling Previous Button
+            previousButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (curQuestion != 0) {
+                        questionLayout.removeAllViews();
+                        curQuestion -= 1;
+                        AddTextViews(selectedOptions[curQuestion]);
+                        if (curQuestion == 0) {
+                            previousButton.setVisibility(View.INVISIBLE);
+                        }
+                        if (curQuestion != questions.size() - 1) {
+                            nextButton.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+            });
+
+            //Retrieving All the questions from Database.
+            DatabaseReference reference = mDatabse.getReference().child("users").child(user.getUid()).child("quiz").child(quizName);
+            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot questionSnapShot : dataSnapshot.getChildren()) {
+                        Questions gotQuestion = questionSnapShot.getValue(Questions.class);
+                        questions.add(gotQuestion);
+                    }
+                    AddTextViews(-1);
+                    selectedOptions = new int[questions.size()];
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getApplicationContext(), "Firebase is Broken!!! Shit", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
 
         //Checking whether user choose to have a timer or not.
         if (bundle.containsKey("Timer")) {
@@ -100,7 +214,7 @@ public class HostActivity extends AppCompatActivity {
                         .setTitle("Finish Quiz ! ")
                         .setMessage("Do You Wish to Finish this Quiz !?")
                         .setNegativeButton(android.R.string.no, null)
-                        .setCancelable(false)
+                        .setCancelable(true)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface arg0, int arg1) {
@@ -115,61 +229,6 @@ public class HostActivity extends AppCompatActivity {
                                 finish();
                             }
                         }).create().show();
-            }
-        });
-
-        //Handling Next Button
-        nextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (curQuestion != questions.size() - 1) {
-                    questionLayout.removeAllViews();
-                    curQuestion += 1;
-                    AddTextViews(selectedOptions[curQuestion]);
-                    if (curQuestion == questions.size() - 1) {
-                        nextButton.setVisibility(View.INVISIBLE);
-                    }
-                    if (previousButton.getVisibility() == View.INVISIBLE) {
-                        previousButton.setVisibility(View.VISIBLE);
-                    }
-                }
-            }
-        });
-
-        //Handling Previous Button
-        previousButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (curQuestion != 0) {
-                    questionLayout.removeAllViews();
-                    curQuestion -= 1;
-                    AddTextViews(selectedOptions[curQuestion]);
-                    if (curQuestion == 0) {
-                        previousButton.setVisibility(View.INVISIBLE);
-                    }
-                    if (curQuestion != questions.size() - 1) {
-                        nextButton.setVisibility(View.VISIBLE);
-                    }
-                }
-            }
-        });
-
-        //Retrieving All the questions from Database.
-        DatabaseReference reference = mDatabse.getReference().child("users").child(user.getUid()).child("quiz").child(quizName);
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot questionSnapShot : dataSnapshot.getChildren()) {
-                    Questions gotQuestion = questionSnapShot.getValue(Questions.class);
-                    questions.add(gotQuestion);
-                }
-                AddTextViews(-1);
-                selectedOptions = new int[questions.size()];
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "Firebase is Broken!!! Shit", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -220,7 +279,6 @@ public class HostActivity extends AppCompatActivity {
                             } else {
                                 selectedOptions[curQuestion] = 0;
                             }
-
                         }
                     }
                 });
@@ -247,8 +305,6 @@ public class HostActivity extends AppCompatActivity {
                 builder
                         .setTitle("Finish Quiz !")
                         .setMessage("The Time Alloted Finished. Thank You.")
-                        .setNegativeButton(android.R.string.no, null)
-                        .setCancelable(true)
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface arg0, int arg1) {
@@ -321,7 +377,53 @@ public class HostActivity extends AppCompatActivity {
         scoreReference.setValue(scoreString);
     }
 
+    //Filling layout with question and options.
+    public void AddTextViewsHosted() {
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        params.setMargins(10, 10, 10, 10);
+
+        try {
+            String questionNumberString = "" + (curQuestion + 1) + "/" + hostedQuestions.size();
+            questionNumber.setText(questionNumberString);
+            questionTextView.setText("Q. ");
+            questionTextView.append(hostedQuestions.get(curQuestion).getQuestion());
+            List<String> options = hostedQuestions.get(curQuestion).getOptions();
+            String selectedOption = hostedQuestions.get(curQuestion).getSelectOption();
+            String correctOption = hostedQuestions.get(curQuestion).getCorrectOption();
+
+            int id = 1;
+            for (int i = 0; i < options.size(); i++) {
+                final TextView option = new TextView(getApplicationContext());
+                option.setText(options.get(i));
+                if (options.get(i).equals(selectedOption) && selectedOption.equals(correctOption)) {
+                    option.setBackgroundColor(Color.GREEN);
+                } else if (options.get(i).equals(selectedOption)) {
+                    option.setBackgroundColor(Color.RED);
+                } else if (options.get(i).equals(correctOption)) {
+                    option.setBackgroundColor(Color.GREEN);
+                } else {
+                    option.setBackgroundColor(Color.BLUE);
+                }
+                option.setTextSize(20);
+                option.setId(id);
+                id += 1;
+                option.setTextColor(Color.WHITE);
+                option.setLayoutParams(params);
+                option.setPadding(8, 8, 8, 8);
+                option.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+                option.setTextSize(20);
+                option.setVisibility(View.VISIBLE);
+                questionLayout.addView(option);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void onBackPressed() {
+        if (bundle.containsKey("hosted")) {
+            finish();
+        }
     }
 }

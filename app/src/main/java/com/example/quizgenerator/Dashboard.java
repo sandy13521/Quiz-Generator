@@ -20,9 +20,6 @@ public class Dashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-//        ActionBar actionbar = getSupportActionBar();
-//        actionbar.hide();
-
         mAuth = FirebaseAuth.getInstance();
         hostQuiz = findViewById(R.id.host_quiz);
         createQuiz = findViewById(R.id.create_quiz);

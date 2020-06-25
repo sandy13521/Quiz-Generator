@@ -1,6 +1,7 @@
 package com.example.quizgenerator.ui.main;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import com.example.quizgenerator.HostActivity;
 import com.example.quizgenerator.R;
 import com.example.quizgenerator.ResultAdapter;
 import com.example.quizgenerator.Results;
@@ -69,9 +71,11 @@ public class ResultFragment extends Fragment {
         results.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Intent intent1 = new Intent(getActivity(), .class);
-//                intent1.putExtra("QuizName", quizNames.get(position));
-//                startActivity(intent1);
+                Intent intent1 = new Intent(getActivity(), HostActivity.class);
+                intent1.putExtra("hosted", true);
+                intent1.putExtra("QuizName", resultData.get(position).getQuizName());
+                intent1.putExtra("Id", hostId.get(position));
+                startActivity(intent1);
             }
         });
 

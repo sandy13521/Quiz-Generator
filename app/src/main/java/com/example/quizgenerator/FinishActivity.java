@@ -23,9 +23,6 @@ public class FinishActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finish);
 
-//        ActionBar actionbar = getSupportActionBar();
-//        actionbar.hide();
-
         quizNameTextView = findViewById(R.id.quiz_name_text_view);
         scoreLayout = findViewById(R.id.layout_score);
         scoreTextView = findViewById(R.id.score_text_view);

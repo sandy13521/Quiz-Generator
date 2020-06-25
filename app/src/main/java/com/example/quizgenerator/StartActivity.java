@@ -22,9 +22,6 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-//        ActionBar actionbar = getSupportActionBar();
-//        actionbar.hide();
-
         //Initializing Variables.
         aSwitch = findViewById(R.id.switch_timer);
         startButton = findViewById(R.id.start_button);

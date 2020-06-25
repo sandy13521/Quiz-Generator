@@ -40,9 +40,6 @@ public class Crop extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crop);
 
-//        ActionBar actionbar = getSupportActionBar();
-//        actionbar.hide();
-
         img = findViewById(R.id.img);
         Uri imageUri = getIntent().getData();
         startCropImageActivity(imageUri);

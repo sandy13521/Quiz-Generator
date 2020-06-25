@@ -30,9 +30,6 @@ public class Name_Quiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_name_quiz);
 
-//        ActionBar actionbar = getSupportActionBar();
-//        actionbar.hide();
-
         mAuth = FirebaseAuth.getInstance();
         TextView name = findViewById(R.id.quiz_name);
         quizName = name.getText();

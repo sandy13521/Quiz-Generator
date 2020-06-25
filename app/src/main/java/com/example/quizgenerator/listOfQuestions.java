@@ -43,9 +43,6 @@ public class listOfQuestions extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_of_questions);
 
-//        ActionBar actionbar = getSupportActionBar();
-//        actionbar.hide();
-
         //Initializing variables.
         listOfQuestion = new ArrayList<>();
         questionsListView = findViewById(R.id.questions);

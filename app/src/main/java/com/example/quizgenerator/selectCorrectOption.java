@@ -37,9 +37,6 @@ public class selectCorrectOption extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_correct_option);
 
-//        ActionBar actionbar = getSupportActionBar();
-//        actionbar.hide();
-
         // Getting DataBase Reference
         mAuth = FirebaseAuth.getInstance();
 

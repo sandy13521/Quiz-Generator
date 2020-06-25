@@ -21,9 +21,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        ActionBar actionbar = getSupportActionBar();
-//        actionbar.hide();
     }
 
     public void generate(View v) {
@@ -47,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                             requestCode);
         } else {
             startActivity(intent);
+            finish();
         }
     }
 

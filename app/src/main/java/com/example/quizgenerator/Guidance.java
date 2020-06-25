@@ -24,9 +24,6 @@ public class Guidance extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guidance);
 
-//        ActionBar actionbar = getSupportActionBar();
-//        actionbar.hide();
-
         btn = findViewById(R.id.getgoing);
     }
 

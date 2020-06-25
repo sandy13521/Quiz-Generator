@@ -27,10 +27,6 @@ public class Question extends AppCompatActivity {
         setContentView(R.layout.activity_question);
         TextView header = findViewById(R.id.name);
 
-        //Removing ActionBar
-//        ActionBar actionbar = getSupportActionBar();
-//        actionbar.hide();
-
         //Getting the Extras sent from the previous Activity.
         bundle = getIntent().getExtras();
 
